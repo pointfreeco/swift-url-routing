@@ -37,6 +37,24 @@ extension ParserPrinter where Input == URLRequestData {
   }
 }
 
+/// Attaches base URL request data to a router.
+///
+/// You will not typically need to interact with this type directly. Instead you will usually use
+/// the `baseURL` and `baseRequestData` operations on router, which constructs this type.
+///
+/// ```swift
+/// let apiRouter = router.baseURL("https://api.pointfree.co/v1")
+///
+/// apiRouter.url(for: .episodes(.episode(1, .index)))
+/// // https://api.pointfree.co/v1/episodes/1
+///
+/// let authenticatedRouter = router
+///   .baseRequestData(.init(headers: ["X-PointFree-Session": ["deadbeef"]]))
+///
+/// try authenticatedRouter.request(for: .home)
+///   .value(forHTTPHeaderField: "x-pointfree-session")
+/// // "deadbeef"
+/// ```
 public struct BaseURLPrinter<Upstream: ParserPrinter>: ParserPrinter
 where Upstream.Input == URLRequestData {
   @usableFromInline

@@ -1,6 +1,6 @@
 # swift-url-routing
 
-A bidirectional router with more type safety and less fuss. This library is built with [Parsing][swift-parsing].
+A bidirectional URL router with more type safety and less fuss. This library is built with [Parsing][swift-parsing].
 
 ---
 
@@ -30,7 +30,7 @@ This library provides URL routing function for both client and server applicatio
 
 To use the library you first begin with a domain modeling exercise. You model a route enum that represents each URL you want to recognize in your application, and each case of the enum holds the data you want to extract from the URL.
 
-For example, if we had screens in our application that represent showing all books, showing a particular book, and searching books, we can model this as an enum:
+For example, if we had screens in our Books application that represent showing all books, showing a particular book, and searching books, we can model this as an enum:
 
 ```swift
 enum AppRoute {
@@ -69,7 +69,7 @@ let appRouter = OneOf {
 }
 ```
 
-This router describes at a high-level how to pick apart the path components, query parameters, and more from a URL in order to transform it into a `AppRoute`.
+This router describes at a high-level how to pick apart the path components, query parameters, and more from a URL in order to transform it into an `AppRoute`.
 
 Once this router is defined you can use it to implement deep-linking logic in your application. You can implement a single function that accepts a `URL`, use the router's `match` method to transform it into an `AppRoute`, and then switch on the route to handle each deep link destination:
 
@@ -92,7 +92,7 @@ This kind of routing is incredibly useful in client side iOS applications, but i
 
 ```swift
 appRoute.path(for: .searchBooks(query: "Blob Bio"))
-// /books/search?query=Blob%20Bio
+// "/books/search?query=Blob%20Bio"
 ```
 
 ```swift
@@ -115,6 +115,8 @@ Node.ul(
 </ul>
 ```
 
+For [Vapor][vapor] bindings to URL Routing, see the [Vapor Routing][vapor-routing] package.
+
 ## Documentation
 
 The documentation for releases and main are available here:
@@ -128,4 +130,5 @@ This library is released under the MIT license. See [LICENSE](LICENSE) for detai
 
 [swift-url-routing-docs]: https://pointfreeco.github.io/swift-url-routing
 [swift-parsing]: http://github.com/pointfreeco/swift-parsing
+[vapor-routing]: http://github.com/pointfreeco/vapor-routing
 [vapor]: http://vapor.codes

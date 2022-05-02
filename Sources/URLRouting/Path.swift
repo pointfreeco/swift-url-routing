@@ -1,3 +1,17 @@
+/// Parses a request's path components.
+///
+/// Useful for incrementally consuming path components from the beginning of a URL.
+///
+/// For example, you could route to a particular user based off a path to their integer identifier:
+///
+/// ```swift
+/// try Path {
+///   "users"
+///   Digits()
+/// }
+/// .match(path: "/users/42")
+/// // 42
+/// ```
 public struct Path<ComponentParsers: Parser>: Parser
 where ComponentParsers.Input == URLRequestData {
   @usableFromInline
@@ -18,27 +32,5 @@ extension Path: ParserPrinter where ComponentParsers: ParserPrinter {
   @inlinable
   public func print(_ output: ComponentParsers.Output, into input: inout URLRequestData) rethrows {
     try self.componentParsers.print(output, into: &input)
-  }
-}
-
-public struct PathComponent<ComponentParser: Parser>: Parser
-where ComponentParser.Input == Substring {
-  @usableFromInline
-  let componentParser: ComponentParser
-
-  @usableFromInline
-  init(_ componentParser: ComponentParser) {
-    self.componentParser = componentParser
-  }
-
-  public func parse(_ input: inout URLRequestData) throws -> ComponentParser.Output {
-    guard input.path.count >= 1 else { throw RoutingError() }
-    return try self.componentParser.parse(input.path.removeFirst())
-  }
-}
-
-extension PathComponent: ParserPrinter where ComponentParser: ParserPrinter {
-  public func print(_ output: ComponentParser.Output, into input: inout URLRequestData) rethrows {
-    try input.path.prepend(self.componentParser.print(output))
   }
 }

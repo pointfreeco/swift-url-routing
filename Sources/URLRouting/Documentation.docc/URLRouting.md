@@ -1,6 +1,6 @@
 # ``URLRouting``
 
-A bidirectional router with more type safety and less fuss. This library is built with [Parsing][swift-parsing].
+A bidirectional URL router with more type safety and less fuss. This library is built with [Parsing][swift-parsing].
 
 ## Additional Resources
 
@@ -10,9 +10,7 @@ A bidirectional router with more type safety and less fuss. This library is buil
 
 ## Overview
 
-URL routing is the process of turning a URL request into well-structured data so that you know
-where to navigate a user in your application. It is also useful to be able to do the opposite:
-turn the well-structured data back into a URL request.
+URL routing is the process of turning a URL request into well-structured data so that you know where to navigate a user in your application. It is also useful to be able to do the opposite: turn the well-structured data back into a URL request.
 
 ## Topics
 
