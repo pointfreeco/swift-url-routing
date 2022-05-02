@@ -1,35 +1,37 @@
 // BEGIN AUTO-GENERATED CONTENT
 
-public struct PathZipOO<P0: Parser, P1: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring
-{
-  public let p0: P0, p1: P1
+extension PathBuilder {
+  public struct PathZipOO<P0: Parser, P1: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring
+  {
+    public let p0: P0, p1: P1
 
-  @inlinable public init(_ p0: P0, _ p1: P1) {
-    self.p0 = p0
-    self.p1 = p1
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1) {
+      self.p0 = p0
+      self.p1 = p1
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output
-  ) {
-    guard input.path.count >= 2 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output
+    ) {
+      guard input.path.count >= 2 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1)
+    }
   }
 }
 
-extension PathZipOO: ParserPrinter
+extension PathBuilder.PathZipOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter
@@ -54,36 +56,38 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOV<P0: Parser, P1: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P1.Output == Void
-{
-  public let p0: P0, p1: P1
+extension PathBuilder {
+  public struct PathZipOV<P0: Parser, P1: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P1.Output == Void
+  {
+    public let p0: P0, p1: P1
 
-  @inlinable public init(_ p0: P0, _ p1: P1) {
-    self.p0 = p0
-    self.p1 = p1
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1) {
+      self.p0 = p0
+      self.p1 = p1
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output
-  ) {
-    guard input.path.count >= 2 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output
+    ) {
+      guard input.path.count >= 2 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0)
+    }
   }
 }
 
-extension PathZipOV: ParserPrinter
+extension PathBuilder.PathZipOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -108,36 +112,38 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVO<P0: Parser, P1: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P0.Output == Void
-{
-  public let p0: P0, p1: P1
+extension PathBuilder {
+  public struct PathZipVO<P0: Parser, P1: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P0.Output == Void
+  {
+    public let p0: P0, p1: P1
 
-  @inlinable public init(_ p0: P0, _ p1: P1) {
-    self.p0 = p0
-    self.p1 = p1
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1) {
+      self.p0 = p0
+      self.p1 = p1
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output
-  ) {
-    guard input.path.count >= 2 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output
+    ) {
+      guard input.path.count >= 2 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1)
+    }
   }
 }
 
-extension PathZipVO: ParserPrinter
+extension PathBuilder.PathZipVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -162,35 +168,37 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVV<P0: Parser, P1: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void
-{
-  public let p0: P0, p1: P1
+extension PathBuilder {
+  public struct PathZipVV<P0: Parser, P1: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void
+  {
+    public let p0: P0, p1: P1
 
-  @inlinable public init(_ p0: P0, _ p1: P1) {
-    self.p0 = p0
-    self.p1 = p1
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1) {
+      self.p0 = p0
+      self.p1 = p1
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws {
-    guard input.path.count >= 2 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    return ()
+    @inlinable public func parse(_ input: inout URLRequestData) throws {
+      guard input.path.count >= 2 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      return ()
+    }
   }
 }
 
-extension PathZipVV: ParserPrinter
+extension PathBuilder.PathZipVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -216,43 +224,45 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOO<P0: Parser, P1: Parser, P2: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring
-{
-  public let p0: P0, p1: P1, p2: P2
+extension PathBuilder {
+  public struct PathZipOOO<P0: Parser, P1: Parser, P2: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring
+  {
+    public let p0: P0, p1: P1, p2: P2
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P2.Output
-  ) {
-    guard input.path.count >= 3 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o2)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P2.Output
+    ) {
+      guard input.path.count >= 3 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o2)
+    }
   }
 }
 
-extension PathZipOOO: ParserPrinter
+extension PathBuilder.PathZipOOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -280,43 +290,45 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOV<P0: Parser, P1: Parser, P2: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P2.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2
+extension PathBuilder {
+  public struct PathZipOOV<P0: Parser, P1: Parser, P2: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P2.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output
-  ) {
-    guard input.path.count >= 3 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output
+    ) {
+      guard input.path.count >= 3 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1)
+    }
   }
 }
 
-extension PathZipOOV: ParserPrinter
+extension PathBuilder.PathZipOOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -344,43 +356,45 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVO<P0: Parser, P1: Parser, P2: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P1.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2
+extension PathBuilder {
+  public struct PathZipOVO<P0: Parser, P1: Parser, P2: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P1.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P2.Output
-  ) {
-    guard input.path.count >= 3 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o2)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P2.Output
+    ) {
+      guard input.path.count >= 3 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o2)
+    }
   }
 }
 
-extension PathZipOVO: ParserPrinter
+extension PathBuilder.PathZipOVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -408,43 +422,45 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVV<P0: Parser, P1: Parser, P2: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P1.Output == Void,
-  P2.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2
+extension PathBuilder {
+  public struct PathZipOVV<P0: Parser, P1: Parser, P2: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P1.Output == Void,
+    P2.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output
-  ) {
-    guard input.path.count >= 3 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output
+    ) {
+      guard input.path.count >= 3 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0)
+    }
   }
 }
 
-extension PathZipOVV: ParserPrinter
+extension PathBuilder.PathZipOVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -472,43 +488,45 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOO<P0: Parser, P1: Parser, P2: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P0.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2
+extension PathBuilder {
+  public struct PathZipVOO<P0: Parser, P1: Parser, P2: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P0.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P2.Output
-  ) {
-    guard input.path.count >= 3 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o2)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P2.Output
+    ) {
+      guard input.path.count >= 3 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o2)
+    }
   }
 }
 
-extension PathZipVOO: ParserPrinter
+extension PathBuilder.PathZipVOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -536,43 +554,45 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOV<P0: Parser, P1: Parser, P2: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P0.Output == Void,
-  P2.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2
+extension PathBuilder {
+  public struct PathZipVOV<P0: Parser, P1: Parser, P2: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P0.Output == Void,
+    P2.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output
-  ) {
-    guard input.path.count >= 3 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output
+    ) {
+      guard input.path.count >= 3 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1)
+    }
   }
 }
 
-extension PathZipVOV: ParserPrinter
+extension PathBuilder.PathZipVOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -600,43 +620,45 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVO<P0: Parser, P1: Parser, P2: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2
+extension PathBuilder {
+  public struct PathZipVVO<P0: Parser, P1: Parser, P2: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P2.Output
-  ) {
-    guard input.path.count >= 3 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    return (o2)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P2.Output
+    ) {
+      guard input.path.count >= 3 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      return (o2)
+    }
   }
 }
 
-extension PathZipVVO: ParserPrinter
+extension PathBuilder.PathZipVVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -664,42 +686,44 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVV<P0: Parser, P1: Parser, P2: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P2.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2
+extension PathBuilder {
+  public struct PathZipVVV<P0: Parser, P1: Parser, P2: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P2.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws {
-    guard input.path.count >= 3 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    return ()
+    @inlinable public func parse(_ input: inout URLRequestData) throws {
+      guard input.path.count >= 3 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      return ()
+    }
   }
 }
 
-extension PathZipVVV: ParserPrinter
+extension PathBuilder.PathZipVVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -728,50 +752,52 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3
+extension PathBuilder {
+  public struct PathZipOOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P2.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 4 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o2, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P2.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 4 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o2, o3)
+    }
   }
 }
 
-extension PathZipOOOO: ParserPrinter
+extension PathBuilder.PathZipOOOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -802,50 +828,52 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3
+extension PathBuilder {
+  public struct PathZipOOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P2.Output
-  ) {
-    guard input.path.count >= 4 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o2)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P2.Output
+    ) {
+      guard input.path.count >= 4 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o2)
+    }
   }
 }
 
-extension PathZipOOOV: ParserPrinter
+extension PathBuilder.PathZipOOOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -876,50 +904,52 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P2.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3
+extension PathBuilder {
+  public struct PathZipOOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P2.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 4 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 4 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o3)
+    }
   }
 }
 
-extension PathZipOOVO: ParserPrinter
+extension PathBuilder.PathZipOOVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -950,50 +980,52 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P2.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3
+extension PathBuilder {
+  public struct PathZipOOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P2.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output
-  ) {
-    guard input.path.count >= 4 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output
+    ) {
+      guard input.path.count >= 4 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1)
+    }
   }
 }
 
-extension PathZipOOVV: ParserPrinter
+extension PathBuilder.PathZipOOVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -1024,50 +1056,52 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P1.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3
+extension PathBuilder {
+  public struct PathZipOVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P1.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P2.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 4 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o2, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P2.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 4 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o2, o3)
+    }
   }
 }
 
-extension PathZipOVOO: ParserPrinter
+extension PathBuilder.PathZipOVOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -1098,50 +1132,52 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P1.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3
+extension PathBuilder {
+  public struct PathZipOVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P1.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P2.Output
-  ) {
-    guard input.path.count >= 4 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o2)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P2.Output
+    ) {
+      guard input.path.count >= 4 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o2)
+    }
   }
 }
 
-extension PathZipOVOV: ParserPrinter
+extension PathBuilder.PathZipOVOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -1172,50 +1208,52 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P1.Output == Void,
-  P2.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3
+extension PathBuilder {
+  public struct PathZipOVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P1.Output == Void,
+    P2.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 4 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 4 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o3)
+    }
   }
 }
 
-extension PathZipOVVO: ParserPrinter
+extension PathBuilder.PathZipOVVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -1246,50 +1284,52 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P1.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3
+extension PathBuilder {
+  public struct PathZipOVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P1.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output
-  ) {
-    guard input.path.count >= 4 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output
+    ) {
+      guard input.path.count >= 4 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0)
+    }
   }
 }
 
-extension PathZipOVVV: ParserPrinter
+extension PathBuilder.PathZipOVVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -1320,50 +1360,52 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P0.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3
+extension PathBuilder {
+  public struct PathZipVOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P0.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P2.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 4 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o2, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P2.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 4 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o2, o3)
+    }
   }
 }
 
-extension PathZipVOOO: ParserPrinter
+extension PathBuilder.PathZipVOOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -1394,50 +1436,52 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P0.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3
+extension PathBuilder {
+  public struct PathZipVOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P0.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P2.Output
-  ) {
-    guard input.path.count >= 4 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o2)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P2.Output
+    ) {
+      guard input.path.count >= 4 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o2)
+    }
   }
 }
 
-extension PathZipVOOV: ParserPrinter
+extension PathBuilder.PathZipVOOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -1468,50 +1512,52 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P0.Output == Void,
-  P2.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3
+extension PathBuilder {
+  public struct PathZipVOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P0.Output == Void,
+    P2.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 4 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 4 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o3)
+    }
   }
 }
 
-extension PathZipVOVO: ParserPrinter
+extension PathBuilder.PathZipVOVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -1542,50 +1588,52 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P0.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3
+extension PathBuilder {
+  public struct PathZipVOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P0.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output
-  ) {
-    guard input.path.count >= 4 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output
+    ) {
+      guard input.path.count >= 4 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1)
+    }
   }
 }
 
-extension PathZipVOVV: ParserPrinter
+extension PathBuilder.PathZipVOVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -1616,50 +1664,52 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3
+extension PathBuilder {
+  public struct PathZipVVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P2.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 4 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    return (o2, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P2.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 4 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      return (o2, o3)
+    }
   }
 }
 
-extension PathZipVVOO: ParserPrinter
+extension PathBuilder.PathZipVVOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -1690,50 +1740,52 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3
+extension PathBuilder {
+  public struct PathZipVVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P2.Output
-  ) {
-    guard input.path.count >= 4 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    return (o2)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P2.Output
+    ) {
+      guard input.path.count >= 4 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      return (o2)
+    }
   }
 }
 
-extension PathZipVVOV: ParserPrinter
+extension PathBuilder.PathZipVVOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -1764,50 +1816,52 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P2.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3
+extension PathBuilder {
+  public struct PathZipVVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P2.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P3.Output
-  ) {
-    guard input.path.count >= 4 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    return (o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P3.Output
+    ) {
+      guard input.path.count >= 4 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      return (o3)
+    }
   }
 }
 
-extension PathZipVVVO: ParserPrinter
+extension PathBuilder.PathZipVVVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -1838,49 +1892,51 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3
+extension PathBuilder {
+  public struct PathZipVVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws {
-    guard input.path.count >= 4 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    return ()
+    @inlinable public func parse(_ input: inout URLRequestData) throws {
+      guard input.path.count >= 4 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      return ()
+    }
   }
 }
 
-extension PathZipVVVV: ParserPrinter
+extension PathBuilder.PathZipVVVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -1912,57 +1968,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipOOOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P2.Output,
-    P3.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o2, o3, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P2.Output,
+      P3.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o2, o3, o4)
+    }
   }
 }
 
-extension PathZipOOOOO: ParserPrinter
+extension PathBuilder.PathZipOOOOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -1996,57 +2054,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipOOOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P2.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o2, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P2.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o2, o3)
+    }
   }
 }
 
-extension PathZipOOOOV: ParserPrinter
+extension PathBuilder.PathZipOOOOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -2080,57 +2140,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipOOOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P2.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o2, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P2.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o2, o4)
+    }
   }
 }
 
-extension PathZipOOOVO: ParserPrinter
+extension PathBuilder.PathZipOOOVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -2164,57 +2226,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P3.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipOOOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P3.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P2.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o2)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P2.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o2)
+    }
   }
 }
 
-extension PathZipOOOVV: ParserPrinter
+extension PathBuilder.PathZipOOOVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -2248,57 +2312,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P2.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipOOVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P2.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P3.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o3, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P3.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o3, o4)
+    }
   }
 }
 
-extension PathZipOOVOO: ParserPrinter
+extension PathBuilder.PathZipOOVOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -2332,57 +2398,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P2.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipOOVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P2.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o3)
+    }
   }
 }
 
-extension PathZipOOVOV: ParserPrinter
+extension PathBuilder.PathZipOOVOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -2416,57 +2484,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P2.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipOOVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P2.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o4)
+    }
   }
 }
 
-extension PathZipOOVVO: ParserPrinter
+extension PathBuilder.PathZipOOVVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -2500,57 +2570,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P2.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipOOVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P2.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1)
+    }
   }
 }
 
-extension PathZipOOVVV: ParserPrinter
+extension PathBuilder.PathZipOOVVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -2584,57 +2656,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P1.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipOVOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P1.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P2.Output,
-    P3.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o2, o3, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P2.Output,
+      P3.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o2, o3, o4)
+    }
   }
 }
 
-extension PathZipOVOOO: ParserPrinter
+extension PathBuilder.PathZipOVOOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -2668,57 +2742,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P1.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipOVOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P1.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P2.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o2, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P2.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o2, o3)
+    }
   }
 }
 
-extension PathZipOVOOV: ParserPrinter
+extension PathBuilder.PathZipOVOOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -2752,57 +2828,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P1.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipOVOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P1.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P2.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o2, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P2.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o2, o4)
+    }
   }
 }
 
-extension PathZipOVOVO: ParserPrinter
+extension PathBuilder.PathZipOVOVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -2836,57 +2914,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P1.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipOVOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P1.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P2.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o2)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P2.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o2)
+    }
   }
 }
 
-extension PathZipOVOVV: ParserPrinter
+extension PathBuilder.PathZipOVOVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -2920,57 +3000,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P1.Output == Void,
-  P2.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipOVVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P1.Output == Void,
+    P2.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P3.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o3, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P3.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o3, o4)
+    }
   }
 }
 
-extension PathZipOVVOO: ParserPrinter
+extension PathBuilder.PathZipOVVOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -3004,57 +3086,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P1.Output == Void,
-  P2.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipOVVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P1.Output == Void,
+    P2.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o3)
+    }
   }
 }
 
-extension PathZipOVVOV: ParserPrinter
+extension PathBuilder.PathZipOVVOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -3088,57 +3172,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P1.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipOVVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P1.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o4)
+    }
   }
 }
 
-extension PathZipOVVVO: ParserPrinter
+extension PathBuilder.PathZipOVVVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -3172,57 +3258,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P1.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipOVVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P1.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0)
+    }
   }
 }
 
-extension PathZipOVVVV: ParserPrinter
+extension PathBuilder.PathZipOVVVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -3256,57 +3344,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P0.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipVOOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P0.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P2.Output,
-    P3.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o2, o3, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P2.Output,
+      P3.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o2, o3, o4)
+    }
   }
 }
 
-extension PathZipVOOOO: ParserPrinter
+extension PathBuilder.PathZipVOOOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -3340,57 +3430,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P0.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipVOOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P0.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P2.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o2, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P2.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o2, o3)
+    }
   }
 }
 
-extension PathZipVOOOV: ParserPrinter
+extension PathBuilder.PathZipVOOOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -3424,57 +3516,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P0.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipVOOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P0.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P2.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o2, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P2.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o2, o4)
+    }
   }
 }
 
-extension PathZipVOOVO: ParserPrinter
+extension PathBuilder.PathZipVOOVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -3508,57 +3602,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P0.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipVOOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P0.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P2.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o2)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P2.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o2)
+    }
   }
 }
 
-extension PathZipVOOVV: ParserPrinter
+extension PathBuilder.PathZipVOOVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -3592,57 +3688,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P0.Output == Void,
-  P2.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipVOVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P0.Output == Void,
+    P2.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P3.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o3, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P3.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o3, o4)
+    }
   }
 }
 
-extension PathZipVOVOO: ParserPrinter
+extension PathBuilder.PathZipVOVOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -3676,57 +3774,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P0.Output == Void,
-  P2.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipVOVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P0.Output == Void,
+    P2.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o3)
+    }
   }
 }
 
-extension PathZipVOVOV: ParserPrinter
+extension PathBuilder.PathZipVOVOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -3760,57 +3860,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P0.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipVOVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P0.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o4)
+    }
   }
 }
 
-extension PathZipVOVVO: ParserPrinter
+extension PathBuilder.PathZipVOVVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -3844,57 +3946,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P0.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipVOVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P0.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1)
+    }
   }
 }
 
-extension PathZipVOVVV: ParserPrinter
+extension PathBuilder.PathZipVOVVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -3928,57 +4032,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipVVOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P2.Output,
-    P3.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o2, o3, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P2.Output,
+      P3.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o2, o3, o4)
+    }
   }
 }
 
-extension PathZipVVOOO: ParserPrinter
+extension PathBuilder.PathZipVVOOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -4012,57 +4118,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipVVOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P2.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o2, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P2.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o2, o3)
+    }
   }
 }
 
-extension PathZipVVOOV: ParserPrinter
+extension PathBuilder.PathZipVVOOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -4096,57 +4204,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipVVOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P2.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o2, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P2.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o2, o4)
+    }
   }
 }
 
-extension PathZipVVOVO: ParserPrinter
+extension PathBuilder.PathZipVVOVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -4180,57 +4290,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipVVOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P2.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o2)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P2.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o2)
+    }
   }
 }
 
-extension PathZipVVOVV: ParserPrinter
+extension PathBuilder.PathZipVVOVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -4264,57 +4376,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P2.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipVVVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P2.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P3.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o3, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P3.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o3, o4)
+    }
   }
 }
 
-extension PathZipVVVOO: ParserPrinter
+extension PathBuilder.PathZipVVVOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -4348,57 +4462,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P2.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipVVVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P2.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P3.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P3.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o3)
+    }
   }
 }
 
-extension PathZipVVVOV: ParserPrinter
+extension PathBuilder.PathZipVVVOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -4432,57 +4548,59 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipVVVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P4.Output
-  ) {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return (o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P4.Output
+    ) {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return (o4)
+    }
   }
 }
 
-extension PathZipVVVVO: ParserPrinter
+extension PathBuilder.PathZipVVVVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -4516,56 +4634,58 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
+extension PathBuilder {
+  public struct PathZipVVVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser>: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws {
-    guard input.path.count >= 5 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    return ()
+    @inlinable public func parse(_ input: inout URLRequestData) throws {
+      guard input.path.count >= 5 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      return ()
+    }
   }
 }
 
-extension PathZipVVVVV: ParserPrinter
+extension PathBuilder.PathZipVVVVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -4600,65 +4720,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOOOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOOOOOO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P2.Output,
-    P3.Output,
-    P4.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o2, o3, o4, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P2.Output,
+      P3.Output,
+      P4.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o2, o3, o4, o5)
+    }
   }
 }
 
-extension PathZipOOOOOO: ParserPrinter
+extension PathBuilder.PathZipOOOOOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -4695,65 +4818,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOOOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOOOOOV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P2.Output,
-    P3.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o2, o3, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P2.Output,
+      P3.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o2, o3, o4)
+    }
   }
 }
 
-extension PathZipOOOOOV: ParserPrinter
+extension PathBuilder.PathZipOOOOOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -4790,65 +4916,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOOOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOOOOVO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P2.Output,
-    P3.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o2, o3, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P2.Output,
+      P3.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o2, o3, o5)
+    }
   }
 }
 
-extension PathZipOOOOVO: ParserPrinter
+extension PathBuilder.PathZipOOOOVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -4885,65 +5014,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOOOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P4.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOOOOVV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P4.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P2.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o2, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P2.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o2, o3)
+    }
   }
 }
 
-extension PathZipOOOOVV: ParserPrinter
+extension PathBuilder.PathZipOOOOVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -4980,65 +5112,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOOVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOOOVOO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P2.Output,
-    P4.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o2, o4, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P2.Output,
+      P4.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o2, o4, o5)
+    }
   }
 }
 
-extension PathZipOOOVOO: ParserPrinter
+extension PathBuilder.PathZipOOOVOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -5075,65 +5210,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOOVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P3.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOOOVOV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P3.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P2.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o2, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P2.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o2, o4)
+    }
   }
 }
 
-extension PathZipOOOVOV: ParserPrinter
+extension PathBuilder.PathZipOOOVOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -5170,65 +5308,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOOVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P3.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOOOVVO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P3.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P2.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o2, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P2.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o2, o5)
+    }
   }
 }
 
-extension PathZipOOOVVO: ParserPrinter
+extension PathBuilder.PathZipOOOVVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -5265,65 +5406,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOOVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P3.Output == Void,
-  P4.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOOOVVV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P3.Output == Void,
+    P4.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P2.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o2)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P2.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o2)
+    }
   }
 }
 
-extension PathZipOOOVVV: ParserPrinter
+extension PathBuilder.PathZipOOOVVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -5360,65 +5504,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOVOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P2.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOOVOOO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P2.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P3.Output,
-    P4.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o3, o4, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P3.Output,
+      P4.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o3, o4, o5)
+    }
   }
 }
 
-extension PathZipOOVOOO: ParserPrinter
+extension PathBuilder.PathZipOOVOOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -5455,65 +5602,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOVOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P2.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOOVOOV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P2.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P3.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o3, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P3.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o3, o4)
+    }
   }
 }
 
-extension PathZipOOVOOV: ParserPrinter
+extension PathBuilder.PathZipOOVOOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -5550,65 +5700,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOVOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P2.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOOVOVO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P2.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P3.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o3, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P3.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o3, o5)
+    }
   }
 }
 
-extension PathZipOOVOVO: ParserPrinter
+extension PathBuilder.PathZipOOVOVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -5645,65 +5798,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOVOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P2.Output == Void,
-  P4.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOOVOVV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P2.Output == Void,
+    P4.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o3)
+    }
   }
 }
 
-extension PathZipOOVOVV: ParserPrinter
+extension PathBuilder.PathZipOOVOVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -5740,65 +5896,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOVVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P2.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOOVVOO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P2.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P4.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o4, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P4.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o4, o5)
+    }
   }
 }
 
-extension PathZipOOVVOO: ParserPrinter
+extension PathBuilder.PathZipOOVVOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -5835,65 +5994,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOVVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P2.Output == Void,
-  P3.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOOVVOV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P2.Output == Void,
+    P3.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o4)
+    }
   }
 }
 
-extension PathZipOOVVOV: ParserPrinter
+extension PathBuilder.PathZipOOVVOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -5930,65 +6092,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOVVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P2.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOOVVVO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P2.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1, o5)
+    }
   }
 }
 
-extension PathZipOOVVVO: ParserPrinter
+extension PathBuilder.PathZipOOVVVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -6025,65 +6190,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOOVVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P2.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOOVVVV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P2.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P1.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o1)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P1.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o1)
+    }
   }
 }
 
-extension PathZipOOVVVV: ParserPrinter
+extension PathBuilder.PathZipOOVVVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -6120,65 +6288,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVOOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P1.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOVOOOO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P1.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P2.Output,
-    P3.Output,
-    P4.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o2, o3, o4, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P2.Output,
+      P3.Output,
+      P4.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o2, o3, o4, o5)
+    }
   }
 }
 
-extension PathZipOVOOOO: ParserPrinter
+extension PathBuilder.PathZipOVOOOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -6215,65 +6386,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVOOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P1.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOVOOOV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P1.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P2.Output,
-    P3.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o2, o3, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P2.Output,
+      P3.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o2, o3, o4)
+    }
   }
 }
 
-extension PathZipOVOOOV: ParserPrinter
+extension PathBuilder.PathZipOVOOOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -6310,65 +6484,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVOOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P1.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOVOOVO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P1.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P2.Output,
-    P3.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o2, o3, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P2.Output,
+      P3.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o2, o3, o5)
+    }
   }
 }
 
-extension PathZipOVOOVO: ParserPrinter
+extension PathBuilder.PathZipOVOOVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -6405,65 +6582,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVOOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P1.Output == Void,
-  P4.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOVOOVV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P1.Output == Void,
+    P4.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P2.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o2, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P2.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o2, o3)
+    }
   }
 }
 
-extension PathZipOVOOVV: ParserPrinter
+extension PathBuilder.PathZipOVOOVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -6500,65 +6680,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVOVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P1.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOVOVOO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P1.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P2.Output,
-    P4.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o2, o4, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P2.Output,
+      P4.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o2, o4, o5)
+    }
   }
 }
 
-extension PathZipOVOVOO: ParserPrinter
+extension PathBuilder.PathZipOVOVOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -6595,65 +6778,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVOVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P1.Output == Void,
-  P3.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOVOVOV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P1.Output == Void,
+    P3.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P2.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o2, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P2.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o2, o4)
+    }
   }
 }
 
-extension PathZipOVOVOV: ParserPrinter
+extension PathBuilder.PathZipOVOVOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -6690,65 +6876,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVOVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P1.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOVOVVO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P1.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P2.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o2, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P2.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o2, o5)
+    }
   }
 }
 
-extension PathZipOVOVVO: ParserPrinter
+extension PathBuilder.PathZipOVOVVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -6785,65 +6974,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVOVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P1.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOVOVVV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P1.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P2.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o2)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P2.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o2)
+    }
   }
 }
 
-extension PathZipOVOVVV: ParserPrinter
+extension PathBuilder.PathZipOVOVVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -6880,65 +7072,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVVOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P1.Output == Void,
-  P2.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOVVOOO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P1.Output == Void,
+    P2.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P3.Output,
-    P4.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o3, o4, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P3.Output,
+      P4.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o3, o4, o5)
+    }
   }
 }
 
-extension PathZipOVVOOO: ParserPrinter
+extension PathBuilder.PathZipOVVOOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -6975,65 +7170,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVVOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P1.Output == Void,
-  P2.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOVVOOV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P1.Output == Void,
+    P2.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P3.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o3, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P3.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o3, o4)
+    }
   }
 }
 
-extension PathZipOVVOOV: ParserPrinter
+extension PathBuilder.PathZipOVVOOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -7070,65 +7268,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVVOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P1.Output == Void,
-  P2.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOVVOVO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P1.Output == Void,
+    P2.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P3.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o3, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P3.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o3, o5)
+    }
   }
 }
 
-extension PathZipOVVOVO: ParserPrinter
+extension PathBuilder.PathZipOVVOVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -7165,65 +7366,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVVOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P1.Output == Void,
-  P2.Output == Void,
-  P4.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOVVOVV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P1.Output == Void,
+    P2.Output == Void,
+    P4.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o3)
+    }
   }
 }
 
-extension PathZipOVVOVV: ParserPrinter
+extension PathBuilder.PathZipOVVOVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -7260,65 +7464,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVVVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P1.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOVVVOO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P1.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P4.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o4, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P4.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o4, o5)
+    }
   }
 }
 
-extension PathZipOVVVOO: ParserPrinter
+extension PathBuilder.PathZipOVVVOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -7355,65 +7562,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVVVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P1.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOVVVOV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P1.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o4)
+    }
   }
 }
 
-extension PathZipOVVVOV: ParserPrinter
+extension PathBuilder.PathZipOVVVOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -7450,65 +7660,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVVVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P1.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOVVVVO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P1.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0, o5)
+    }
   }
 }
 
-extension PathZipOVVVVO: ParserPrinter
+extension PathBuilder.PathZipOVVVVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -7545,65 +7758,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipOVVVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P1.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipOVVVVV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P1.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P0.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    let o0 = try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o0)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P0.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      let o0 = try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o0)
+    }
   }
 }
 
-extension PathZipOVVVVV: ParserPrinter
+extension PathBuilder.PathZipOVVVVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -7640,65 +7856,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOOOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVOOOOO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P2.Output,
-    P3.Output,
-    P4.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o2, o3, o4, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P2.Output,
+      P3.Output,
+      P4.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o2, o3, o4, o5)
+    }
   }
 }
 
-extension PathZipVOOOOO: ParserPrinter
+extension PathBuilder.PathZipVOOOOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -7735,65 +7954,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOOOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVOOOOV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P2.Output,
-    P3.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o2, o3, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P2.Output,
+      P3.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o2, o3, o4)
+    }
   }
 }
 
-extension PathZipVOOOOV: ParserPrinter
+extension PathBuilder.PathZipVOOOOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -7830,65 +8052,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOOOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVOOOVO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P2.Output,
-    P3.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o2, o3, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P2.Output,
+      P3.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o2, o3, o5)
+    }
   }
 }
 
-extension PathZipVOOOVO: ParserPrinter
+extension PathBuilder.PathZipVOOOVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -7925,65 +8150,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOOOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P4.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVOOOVV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P4.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P2.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o2, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P2.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o2, o3)
+    }
   }
 }
 
-extension PathZipVOOOVV: ParserPrinter
+extension PathBuilder.PathZipVOOOVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -8020,65 +8248,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOOVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVOOVOO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P2.Output,
-    P4.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o2, o4, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P2.Output,
+      P4.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o2, o4, o5)
+    }
   }
 }
 
-extension PathZipVOOVOO: ParserPrinter
+extension PathBuilder.PathZipVOOVOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -8115,65 +8346,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOOVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P3.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVOOVOV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P3.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P2.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o2, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P2.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o2, o4)
+    }
   }
 }
 
-extension PathZipVOOVOV: ParserPrinter
+extension PathBuilder.PathZipVOOVOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -8210,65 +8444,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOOVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVOOVVO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P2.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o2, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P2.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o2, o5)
+    }
   }
 }
 
-extension PathZipVOOVVO: ParserPrinter
+extension PathBuilder.PathZipVOOVVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -8305,65 +8542,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOOVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVOOVVV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P2.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o2)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P2.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o2)
+    }
   }
 }
 
-extension PathZipVOOVVV: ParserPrinter
+extension PathBuilder.PathZipVOOVVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -8400,65 +8640,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOVOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P2.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVOVOOO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P2.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P3.Output,
-    P4.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o3, o4, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P3.Output,
+      P4.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o3, o4, o5)
+    }
   }
 }
 
-extension PathZipVOVOOO: ParserPrinter
+extension PathBuilder.PathZipVOVOOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -8495,65 +8738,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOVOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P2.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVOVOOV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P2.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P3.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o3, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P3.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o3, o4)
+    }
   }
 }
 
-extension PathZipVOVOOV: ParserPrinter
+extension PathBuilder.PathZipVOVOOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -8590,65 +8836,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOVOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P2.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVOVOVO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P2.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P3.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o3, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P3.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o3, o5)
+    }
   }
 }
 
-extension PathZipVOVOVO: ParserPrinter
+extension PathBuilder.PathZipVOVOVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -8685,65 +8934,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOVOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P2.Output == Void,
-  P4.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVOVOVV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P2.Output == Void,
+    P4.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o3)
+    }
   }
 }
 
-extension PathZipVOVOVV: ParserPrinter
+extension PathBuilder.PathZipVOVOVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -8780,65 +9032,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOVVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVOVVOO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P4.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o4, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P4.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o4, o5)
+    }
   }
 }
 
-extension PathZipVOVVOO: ParserPrinter
+extension PathBuilder.PathZipVOVVOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -8875,65 +9130,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOVVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVOVVOV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o4)
+    }
   }
 }
 
-extension PathZipVOVVOV: ParserPrinter
+extension PathBuilder.PathZipVOVVOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -8970,65 +9228,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOVVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVOVVVO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1, o5)
+    }
   }
 }
 
-extension PathZipVOVVVO: ParserPrinter
+extension PathBuilder.PathZipVOVVVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -9065,65 +9326,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVOVVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVOVVVV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P1.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    let o1 = try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o1)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P1.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      let o1 = try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o1)
+    }
   }
 }
 
-extension PathZipVOVVVV: ParserPrinter
+extension PathBuilder.PathZipVOVVVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -9160,65 +9424,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVOOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVVOOOO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P2.Output,
-    P3.Output,
-    P4.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o2, o3, o4, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P2.Output,
+      P3.Output,
+      P4.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o2, o3, o4, o5)
+    }
   }
 }
 
-extension PathZipVVOOOO: ParserPrinter
+extension PathBuilder.PathZipVVOOOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -9255,65 +9522,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVOOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVVOOOV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P2.Output,
-    P3.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o2, o3, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P2.Output,
+      P3.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o2, o3, o4)
+    }
   }
 }
 
-extension PathZipVVOOOV: ParserPrinter
+extension PathBuilder.PathZipVVOOOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -9350,65 +9620,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVOOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVVOOVO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P2.Output,
-    P3.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o2, o3, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P2.Output,
+      P3.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o2, o3, o5)
+    }
   }
 }
 
-extension PathZipVVOOVO: ParserPrinter
+extension PathBuilder.PathZipVVOOVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -9445,65 +9718,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVOOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P4.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVVOOVV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P4.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P2.Output,
-    P3.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o2, o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P2.Output,
+      P3.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o2, o3)
+    }
   }
 }
 
-extension PathZipVVOOVV: ParserPrinter
+extension PathBuilder.PathZipVVOOVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -9540,65 +9816,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVOVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVVOVOO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P2.Output,
-    P4.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o2, o4, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P2.Output,
+      P4.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o2, o4, o5)
+    }
   }
 }
 
-extension PathZipVVOVOO: ParserPrinter
+extension PathBuilder.PathZipVVOVOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -9635,65 +9914,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVOVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P3.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVVOVOV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P3.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P2.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o2, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P2.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o2, o4)
+    }
   }
 }
 
-extension PathZipVVOVOV: ParserPrinter
+extension PathBuilder.PathZipVVOVOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -9730,65 +10012,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVOVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVVOVVO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P2.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o2, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P2.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o2, o5)
+    }
   }
 }
 
-extension PathZipVVOVVO: ParserPrinter
+extension PathBuilder.PathZipVVOVVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -9825,65 +10110,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVOVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVVOVVV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P2.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    let o2 = try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o2)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P2.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      let o2 = try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o2)
+    }
   }
 }
 
-extension PathZipVVOVVV: ParserPrinter
+extension PathBuilder.PathZipVVOVVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -9920,65 +10208,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVVOOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P2.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVVVOOO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P2.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P3.Output,
-    P4.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o3, o4, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P3.Output,
+      P4.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o3, o4, o5)
+    }
   }
 }
 
-extension PathZipVVVOOO: ParserPrinter
+extension PathBuilder.PathZipVVVOOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -10015,65 +10306,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVVOOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P2.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVVVOOV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P2.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P3.Output,
-    P4.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o3, o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P3.Output,
+      P4.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o3, o4)
+    }
   }
 }
 
-extension PathZipVVVOOV: ParserPrinter
+extension PathBuilder.PathZipVVVOOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -10110,65 +10404,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVVOVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P2.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVVVOVO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P2.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P3.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o3, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P3.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o3, o5)
+    }
   }
 }
 
-extension PathZipVVVOVO: ParserPrinter
+extension PathBuilder.PathZipVVVOVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -10205,65 +10502,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVVOVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P2.Output == Void,
-  P4.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVVVOVV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P2.Output == Void,
+    P4.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P3.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    let o3 = try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o3)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P3.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      let o3 = try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o3)
+    }
   }
 }
 
-extension PathZipVVVOVV: ParserPrinter
+extension PathBuilder.PathZipVVVOVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -10300,65 +10600,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVVVOO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVVVVOO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P4.Output,
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o4, o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P4.Output,
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o4, o5)
+    }
   }
 }
 
-extension PathZipVVVVOO: ParserPrinter
+extension PathBuilder.PathZipVVVVOO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -10395,65 +10698,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVVVOV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVVVVOV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P4.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    let o4 = try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o4)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P4.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      let o4 = try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o4)
+    }
   }
 }
 
-extension PathZipVVVVOV: ParserPrinter
+extension PathBuilder.PathZipVVVVOV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -10490,65 +10796,68 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVVVVO<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVVVVVO<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws -> (
-    P5.Output
-  ) {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    let o5 = try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return (o5)
+    @inlinable public func parse(_ input: inout URLRequestData) throws -> (
+      P5.Output
+    ) {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      let o5 = try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return (o5)
+    }
   }
 }
 
-extension PathZipVVVVVO: ParserPrinter
+extension PathBuilder.PathZipVVVVVO: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
@@ -10585,64 +10894,67 @@ extension PathBuilder {
   }
 }
 
-public struct PathZipVVVVVV<P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser>:
-  Parser
-where
-  P0.Input == Substring,
-  P1.Input == Substring,
-  P2.Input == Substring,
-  P3.Input == Substring,
-  P4.Input == Substring,
-  P5.Input == Substring,
-  P0.Output == Void,
-  P1.Output == Void,
-  P2.Output == Void,
-  P3.Output == Void,
-  P4.Output == Void,
-  P5.Output == Void
-{
-  public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
+extension PathBuilder {
+  public struct PathZipVVVVVV<
+    P0: Parser, P1: Parser, P2: Parser, P3: Parser, P4: Parser, P5: Parser
+  >: Parser
+  where
+    P0.Input == Substring,
+    P1.Input == Substring,
+    P2.Input == Substring,
+    P3.Input == Substring,
+    P4.Input == Substring,
+    P5.Input == Substring,
+    P0.Output == Void,
+    P1.Output == Void,
+    P2.Output == Void,
+    P3.Output == Void,
+    P4.Output == Void,
+    P5.Output == Void
+  {
+    public let p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5
 
-  @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
-    self.p0 = p0
-    self.p1 = p1
-    self.p2 = p2
-    self.p3 = p3
-    self.p4 = p4
-    self.p5 = p5
-  }
+    @inlinable public init(_ p0: P0, _ p1: P1, _ p2: P2, _ p3: P3, _ p4: P4, _ p5: P5) {
+      self.p0 = p0
+      self.p1 = p1
+      self.p2 = p2
+      self.p3 = p3
+      self.p4 = p4
+      self.p5 = p5
+    }
 
-  @inlinable public func parse(_ input: inout URLRequestData) throws {
-    guard input.path.count >= 6 else { throw RoutingError() }
-    try Parse {
-      p0
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p1
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p2
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p3
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p4
-      End()
-    }.parse(input.path.removeFirst())
-    try Parse {
-      p5
-      End()
-    }.parse(input.path.removeFirst())
-    return ()
+    @inlinable public func parse(_ input: inout URLRequestData) throws {
+      guard input.path.count >= 6 else { throw RoutingError() }
+      try Parse {
+        p0
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p1
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p2
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p3
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p4
+        End()
+      }.parse(input.path.removeFirst())
+      try Parse {
+        p5
+        End()
+      }.parse(input.path.removeFirst())
+      return ()
+    }
   }
 }
 
-extension PathZipVVVVVV: ParserPrinter
+extension PathBuilder.PathZipVVVVVV: ParserPrinter
 where
   P0: ParserPrinter,
   P1: ParserPrinter,
