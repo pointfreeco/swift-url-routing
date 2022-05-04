@@ -1,5 +1,4 @@
 import Benchmark
-import Parsing
 
 Benchmark.main(
   [

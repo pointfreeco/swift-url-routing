@@ -1,6 +1,5 @@
 import Benchmark
 import Foundation
-import Parsing
 import URLRouting
 
 #if canImport(FoundationNetworking)

@@ -30,6 +30,7 @@ public enum PathBuilder {
       self.componentParser = componentParser
     }
 
+    @inlinable
     public func parse(_ input: inout URLRequestData) throws -> ComponentParser.Output {
       guard input.path.count >= 1 else { throw RoutingError() }
       return try self.componentParser.parse(input.path.removeFirst())
@@ -38,6 +39,7 @@ public enum PathBuilder {
 }
 
 extension PathBuilder.Component: ParserPrinter where ComponentParser: ParserPrinter {
+  @inlinable
   public func print(_ output: ComponentParser.Output, into input: inout URLRequestData) rethrows {
     try input.path.prepend(self.componentParser.print(output))
   }
