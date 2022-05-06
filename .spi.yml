@@ -1,0 +1,11 @@
+version: 1
+builder:
+  configs:
+  - platform: ios
+    scheme: URLRouting
+  - platform: macos-xcodebuild
+    scheme: URLRouting
+  - platform: tvos
+    scheme: URLRouting
+  - platform: watchos
+    scheme: URLRouting
