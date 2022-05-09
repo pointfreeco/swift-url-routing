@@ -63,7 +63,7 @@ extension URLRoutingClient {
   public static func live<R: ParserPrinter>(router: R, session: URLSession = .shared) -> Self
   where R.Input == URLRequestData, R.Output == Route {
     Self { route in
-      let request = try router.request(for: route)
+      let request = try router.request(for: route, session: session)
 
       #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
         if #available(macOS 12, iOS 15, tvOS 15, watchOS 8, *) {
