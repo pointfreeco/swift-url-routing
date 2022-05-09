@@ -34,7 +34,7 @@ extension ParserPrinter where Input == URLRequestData {
     else { throw RoutingError() }
     session.configuration.httpAdditionalHeaders?.forEach({ header in
       if let key = header.key as? String {
-        request.addValue(key, forHTTPHeaderField: header.value as? String ?? "")
+        request.setValue(key, forHTTPHeaderField: header.value as? String ?? "")
       }
     })
     return request
