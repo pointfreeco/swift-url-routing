@@ -16,9 +16,14 @@ import XCTestDynamicOverlay
 /// responses.
 public struct URLRoutingClient<Route> {
   var request: (Route) async throws -> (Data, URLResponse)
+  let decoder: JSONDecoder
 
-  public init(request: @escaping (Route) async throws -> (Data, URLResponse)) {
+  public init(
+    request: @escaping (Route) async throws -> (Data, URLResponse),
+    decoder: JSONDecoder = .init()
+  ) {
     self.request = request
+    self.decoder = decoder
   }
 
   /// Makes a request to a route.
@@ -32,11 +37,11 @@ public struct URLRoutingClient<Route> {
   public func request<Value: Decodable>(
     _ route: Route,
     as type: Value.Type = Value.self,
-    decoder: JSONDecoder = .init()
+    decoder: JSONDecoder? = nil
   ) async throws -> (value: Value, response: URLResponse) {
     let (data, response) = try await self.request(route)
     do {
-      return (try decoder.decode(type, from: data), response)
+      return (try (decoder ?? self.decoder).decode(type, from: data), response)
     } catch {
       throw URLRoutingDecodingError(bytes: data, response: response, underlyingError: error)
     }
@@ -60,39 +65,46 @@ extension URLRoutingClient {
   ///   - session: A URL session.
   /// - Returns: A live API client that makes requests through a URL session.
   @available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, *)
-  public static func live<R: ParserPrinter>(router: R, session: URLSession = .shared) -> Self
+  public static func live<R: ParserPrinter>(
+    router: R,
+    session: URLSession = .shared,
+    decoder: JSONDecoder = .init()
+  ) -> Self
   where R.Input == URLRequestData, R.Output == Route {
-    Self { route in
-      let request = try router.request(for: route)
+    Self.init(
+      request: { route in
+        let request = try router.request(for: route)
 
-      #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-        if #available(macOS 12, iOS 15, tvOS 15, watchOS 8, *) {
-          return try await session.data(for: request)
-        }
-      #endif
-      var dataTask: URLSessionDataTask?
-      let cancel: () -> Void = { dataTask?.cancel() }
-
-      return try await withTaskCancellationHandler(
-        handler: { cancel() },
-        operation: {
-          try await withCheckedThrowingContinuation { continuation in
-            dataTask = session.dataTask(with: request) { data, response, error in
-              guard
-                let data = data,
-                let response = response
-              else {
-                continuation.resume(throwing: error ?? URLError(.badServerResponse))
-                return
-              }
-
-              continuation.resume(returning: (data, response))
-            }
-            dataTask?.resume()
+        #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+          if #available(macOS 12, iOS 15, tvOS 15, watchOS 8, *) {
+            return try await session.data(for: request)
           }
-        }
-      )
-    }
+        #endif
+        var dataTask: URLSessionDataTask?
+        let cancel: () -> Void = { dataTask?.cancel() }
+
+        return try await withTaskCancellationHandler(
+          handler: { cancel() },
+          operation: {
+            try await withCheckedThrowingContinuation { continuation in
+              dataTask = session.dataTask(with: request) { data, response, error in
+                guard
+                  let data = data,
+                  let response = response
+                else {
+                  continuation.resume(throwing: error ?? URLError(.badServerResponse))
+                  return
+                }
+
+                continuation.resume(returning: (data, response))
+              }
+              dataTask?.resume()
+            }
+          }
+        )
+      },
+      decoder: decoder
+    )
   }
 }
 
