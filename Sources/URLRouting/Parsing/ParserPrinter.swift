@@ -29,9 +29,14 @@ extension Parser where Input == URLRequestData {
 
 extension ParserPrinter where Input == URLRequestData {
   @inlinable
-  public func request(for route: Output) throws -> URLRequest {
+  public func request(for route: Output, session: URLSession) throws -> URLRequest {
     guard let request = try URLRequest(data: self.print(route))
     else { throw RoutingError() }
+    session.configuration.httpAdditionalHeaders?.forEach({ header in
+      if let key = header.key as? String {
+        request.addValue(key, forHTTPHeaderField: header.value as? String ?? "")
+      }
+    })
     return request
   }
 
