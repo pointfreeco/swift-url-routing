@@ -41,6 +41,20 @@ public struct URLRoutingClient<Route> {
       throw URLRoutingDecodingError(bytes: data, response: response, underlyingError: error)
     }
   }
+
+  /// Allows you to create a client that only handles a subset of routes.
+  ///
+  /// - Parameters:
+  ///    - toRoute: A closure that converts `ChildRoute` back to `Route`.
+  ///
+  /// - Returns: A client that can only request child routes.
+  public func scoped<ChildRoute>(
+    to toRoute: @escaping (ChildRoute) -> Route
+  ) -> URLRoutingClient<ChildRoute> {
+    .init { child in
+      try await self.request(toRoute(child))
+    }
+  }
 }
 
 public struct URLRoutingDecodingError: Error {

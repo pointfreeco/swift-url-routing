@@ -43,4 +43,16 @@ class ClientTests: XCTestCase {
     XCTAssertEqual("result", value)
     XCTAssertEqual(200, (response as! HTTPURLResponse).statusCode)
   }
+
+  func testScoped() async throws {
+    let client = URLRoutingClient<TestRoute>.failing
+      .override(.child(.one)) { try .ok("result") }
+
+    let scopedClient = client.scoped(to: TestRoute.child)
+
+    let (value, response) = try await scopedClient.request(.one, as: String.self)
+
+    XCTAssertEqual("result", value)
+    XCTAssertEqual(200, (response as! HTTPURLResponse).statusCode)
+  }
 }
