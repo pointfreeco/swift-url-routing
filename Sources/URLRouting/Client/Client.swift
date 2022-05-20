@@ -6,13 +6,13 @@ import XCTestDynamicOverlay
   import FoundationNetworking
 #endif
 
-/// A type that can make requests to a server, download the response, and decode the response
-/// into a model.
+/// A type that can make requests to a server, download the response, and decode the response into a
+/// model.
 ///
 /// You do not typically construct this type directly from its initializer, and instead use the
-/// ``live(router:session:)`` static method for creating an API client from a parser-printer, or
-/// use the ``failing`` static variable for creating an API client that throws an error when a
-/// request is made and then use ``override(_:with:)-1ot4o`` to override certain routes with mocked
+/// ``live(router:session:)`` static method for creating an API client from a parser-printer, or use
+/// the ``failing`` static variable for creating an API client that throws an error when a request
+/// is made and then use ``override(_:with:)-1ot4o`` to override certain routes with mocked
 /// responses.
 public struct URLRoutingClient<Route> {
   var request: (Route) async throws -> (Data, URLResponse)
@@ -28,18 +28,27 @@ public struct URLRoutingClient<Route> {
 
   /// Makes a request to a route.
   ///
+  /// - Parameter route: The route to request.
+  /// - Returns: The data and response.
+  @available(iOS 13, macOS 10.15, tvOS 13, watchOS 6, *)
+  public func data(for route: Route) async throws -> (value: Data, response: URLResponse) {
+    try await self.request(route)
+  }
+
+  /// Makes a request to a route.
+  ///
   /// - Parameters:
   ///   - route: The route to request.
   ///   - type: The type of value to decode the response into.
   ///   - decoder: A JSON decoder.
   /// - Returns: The decoded value.
   @available(iOS 13, macOS 10.15, tvOS 13, watchOS 6, *)
-  public func request<Value: Decodable>(
-    _ route: Route,
+  public func decodedResponse<Value: Decodable>(
+    for route: Route,
     as type: Value.Type = Value.self,
     decoder: JSONDecoder? = nil
   ) async throws -> (value: Value, response: URLResponse) {
-    let (data, response) = try await self.request(route)
+    let (data, response) = try await self.data(for: route)
     do {
       return (try (decoder ?? self.decoder).decode(type, from: data), response)
     } catch {

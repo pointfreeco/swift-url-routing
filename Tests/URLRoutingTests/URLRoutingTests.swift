@@ -60,7 +60,7 @@ class URLRoutingTests: XCTestCase {
 
     let name = try p.parse(&request)
     XCTAssertEqual("Hello", name)
-    XCTAssertEqual(["X-Haha": ["Blob"]], request.headers)
+    XCTAssertEqual(["x-haha": ["Blob"]], request.headers)
   }
 
   func testQuery() throws {

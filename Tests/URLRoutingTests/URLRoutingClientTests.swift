@@ -19,7 +19,7 @@ class URLRoutingClientTests: XCTestCase {
       let sut = URLRoutingClient<AppRoute>(request: { _ in
         ("{\"decodableValue\":\"result\"}".data(using: .utf8)!, URLResponse())
       })
-      let response = try await sut.request(.test, as: Response.self)
+      let response = try await sut.decodedResponse(for: .test, as: Response.self)
       XCTAssertEqual(response.value, .init(decodableValue: "result"))
     }
     @available(iOS 13, macOS 10.15, tvOS 13, watchOS 6, *)
@@ -36,7 +36,7 @@ class URLRoutingClientTests: XCTestCase {
         request: { _ in
           ("{\"decodable_value\":\"result\"}".data(using: .utf8)!, URLResponse())
         }, decoder: customDecoder)
-      let response = try await sut.request(.test, as: Response.self)
+      let response = try await sut.decodedResponse(for: .test, as: Response.self)
       XCTAssertEqual(response.value, .init(decodableValue: "result"))
     }
     @available(iOS 13, macOS 10.15, tvOS 13, watchOS 6, *)
@@ -53,7 +53,7 @@ class URLRoutingClientTests: XCTestCase {
         request: { _ in
           ("{\"decodableValue\":\"result\"}".data(using: .utf8)!, URLResponse())
         }, decoder: customDecoder)
-      let response = try await sut.request(.test, as: Response.self, decoder: .init())
+      let response = try await sut.decodedResponse(for: .test, as: Response.self, decoder: .init())
       XCTAssertEqual(response.value, .init(decodableValue: "result"))
     }
   #endif
