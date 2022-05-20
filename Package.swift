@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "URLRouting",
+  name: "swift-url-routing",
   products: [
     .library(name: "URLRouting", targets: ["URLRouting"])
   ],
