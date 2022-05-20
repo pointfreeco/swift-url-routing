@@ -51,7 +51,7 @@ extension ParserPrinter where Input == URLRequestData {
 /// let authenticatedRouter = router
 ///   .baseRequestData(.init(headers: ["X-PointFree-Session": ["deadbeef"]]))
 ///
-/// try authenticatedRouter.response(for: .home)
+/// try authenticatedRouter.request(for: .home)
 ///   .value(forHTTPHeaderField: "x-pointfree-session")
 /// // "deadbeef"
 /// ```
