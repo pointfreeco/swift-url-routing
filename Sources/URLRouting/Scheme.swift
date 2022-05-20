@@ -8,6 +8,10 @@
 ///   ...
 /// }
 /// ```
+///
+/// > Note: Do not use the `Scheme` parser for the purpose of preferring to print a particular
+/// > scheme from your router. Instead, consider using ``BaseURLPrinter`` via the `baseURL` and
+/// > `baseRequestData` methods on routers.
 public struct Scheme: ParserPrinter {
   @usableFromInline
   let name: String
@@ -17,11 +21,6 @@ public struct Scheme: ParserPrinter {
 
   /// A parser of the `https` scheme.
   public static let https = Self("https")
-
-  /// A parser of custom schemes.
-  public static func custom(_ scheme: String) -> Self {
-    Self(scheme)
-  }
 
   /// Initializes a scheme parser with a scheme name.
   ///
