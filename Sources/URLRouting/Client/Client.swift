@@ -28,6 +28,15 @@ public struct URLRoutingClient<Route> {
 
   /// Makes a request to a route.
   ///
+  /// - Parameter route: The route to request.
+  /// - Returns: The data and response.
+  @available(iOS 13, macOS 10.15, tvOS 13, watchOS 6, *)
+  public func data(for route: Route) async throws -> (value: Data, response: URLResponse) {
+    try await self.request(route)
+  }
+
+  /// Makes a request to a route.
+  ///
   /// - Parameters:
   ///   - route: The route to request.
   ///   - type: The type of value to decode the response into.
@@ -39,7 +48,7 @@ public struct URLRoutingClient<Route> {
     as type: Value.Type = Value.self,
     decoder: JSONDecoder? = nil
   ) async throws -> (value: Value, response: URLResponse) {
-    let (data, response) = try await self.request(route)
+    let (data, response) = try await self.data(for: route)
     do {
       return (try (decoder ?? self.decoder).decode(type, from: data), response)
     } catch {
