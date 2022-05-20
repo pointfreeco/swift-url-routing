@@ -50,6 +50,15 @@ public struct URLRequestData: Equatable, _EmptyInitializable {
   /// The user subcomponent of the request URL.
   public var user: String?
 
+  /// Configurable custom request options
+  public var options: URLRequestOptions = .init([:])
+
+  /// Accessor for request options.
+  public subscript<Option: URLRequestOption>(option type: Option.Type) -> Option.Value {
+    get { options[option: type] }
+    set { options[option: type] = newValue }
+  }
+
   /// Initializes an empty URL request.
   public init() {}
 
@@ -79,6 +88,7 @@ public struct URLRequestData: Equatable, _EmptyInitializable {
     query: [String: [String?]] = [:],
     fragment: String? = nil,
     headers: [String: [String?]] = [:],
+    options: URLRequestOptions = .init([:]),
     body: Data? = nil
   ) {
     self.body = body
@@ -86,6 +96,7 @@ public struct URLRequestData: Equatable, _EmptyInitializable {
     self.headers = .init(headers.mapValues { $0.map { $0?[...] }[...] }, isNameCaseSensitive: false)
     self.host = host
     self.method = method
+      self.options = options
     self.password = password
     self.path = path.split(separator: "/")[...]
     self.port = port

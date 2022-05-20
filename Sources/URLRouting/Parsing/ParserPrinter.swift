@@ -28,6 +28,12 @@ extension Parser where Input == URLRequestData {
 }
 
 extension ParserPrinter where Input == URLRequestData {
+    @inlinable
+    public func option<Option: URLRequestOption>(_ type: Option.Type, for route: Output) -> Option.Value {
+        let value = try? self.print(route)[option: type]
+        return value ?? Option.defaultValue
+    }
+
   @inlinable
   public func request(for route: Output) throws -> URLRequest {
     guard let request = try URLRequest(data: self.print(route))

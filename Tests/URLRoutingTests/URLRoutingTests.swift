@@ -245,4 +245,14 @@ class URLRoutingTests: XCTestCase {
       )?.url?.absoluteString
     )
   }
+
+
+    func testOptions() throws {
+        enum TestOption: URLRequestOption {
+            static var defaultValue: Self = .foo
+            case foo, bar
+        }
+        XCTAssertEqual(.foo, Options { }.print()[option: TestOption.self])
+        XCTAssertEqual(.bar, Options { TestOption.bar }.print()[option: TestOption.self])
+    }
 }
