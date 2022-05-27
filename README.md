@@ -94,7 +94,7 @@ func handleDeepLink(url: URL) throws {
 This kind of routing is incredibly useful in client side iOS applications, but it can also be used in server-side applications. Even better, it can automatically transform `AppRoute` values back into URL's which is handy for linking to various parts of your website:
 
 ```swift
-appRoute.path(for: .searchBooks(query: "Blob Bio"))
+appRouter.path(for: .searchBooks(query: "Blob Bio"))
 // "/books/search?query=Blob%20Bio"
 ```
 
