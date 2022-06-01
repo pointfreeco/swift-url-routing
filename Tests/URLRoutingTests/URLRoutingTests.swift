@@ -97,6 +97,71 @@ class URLRoutingTests: XCTestCase {
       URLRequestData(query: [:])
     )
   }
+  
+  func testFragment() throws {
+    // test default initializer
+    let q1 = Fragment()
+    
+    var request = try XCTUnwrap(URLRequestData(string: "#fragment"))
+    XCTAssertEqual(
+      "fragment",
+      try q1.parse(&request)
+    )
+    XCTAssertEqual(
+      URLRequestData(fragment: "fragment"),
+      try q1.print("fragment")
+    )
+    
+    struct Timestamp: Equatable, RawRepresentable {
+      let rawValue: String
+    }
+    
+    // test conversion initializer
+    let q2 = Fragment(.string.representing(Timestamp.self))
+    request = try XCTUnwrap(URLRequestData(string: "https://www.pointfree.co/episodes/ep182-invertible-parsing-map#t802"))
+    XCTAssertEqual(
+      Timestamp(rawValue: "t802"),
+      try q2.parse(&request)
+    )
+    XCTAssertEqual(
+      URLRequestData(fragment: "t802"),
+      try q2.print(Timestamp(rawValue: "t802"))
+    )
+    
+    // test parser builder initializer
+    let p3 = Fragment {
+      "section1"
+    }
+    
+    request = try XCTUnwrap(URLRequestData(string: "#section1"))
+    XCTAssertNoThrow(try p3.parse(&request))
+    request = try XCTUnwrap(URLRequestData(string: "#section2"))
+    XCTAssertThrowsError(try p3.parse(&request))
+    XCTAssertEqual(
+      .init(fragment: "section1"),
+      try p3.print()
+    )
+    
+    enum AppRoute: Equatable {
+      case privacyPolicy(section: String)
+    }
+    
+    // routing example
+    let r = Route(.case(AppRoute.privacyPolicy(section:))) {
+      Path { "legal"; "privacy" }
+      Fragment()
+    }
+    
+    request = try XCTUnwrap(URLRequestData(string: "/legal/privacy#faq"))
+    XCTAssertEqual(
+      .privacyPolicy(section: "faq"),
+      try r.parse(&request)
+    )
+    XCTAssertEqual(
+      .init(path: "/legal/privacy", fragment: "faq"),
+      try r.print(.privacyPolicy(section: "faq"))
+    )
+  }
 
   func testCookies() throws {
     struct Session: Equatable {

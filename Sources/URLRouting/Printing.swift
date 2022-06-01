@@ -84,6 +84,7 @@ where Upstream.Input == URLRequestData {
     if let port = self.defaultRequestData.port { input.port = port }
     input.path.prepend(contentsOf: self.defaultRequestData.path)
     input.query.fields.merge(self.defaultRequestData.query.fields) { $1 + $0 }
+    if let fragment = self.defaultRequestData.fragment { input.fragment = fragment }
     input.headers.fields.merge(self.defaultRequestData.headers.fields) { $1 + $0 }
   }
 }
