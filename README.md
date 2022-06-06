@@ -57,7 +57,7 @@ let appRouter = OneOf {
   }
 
   // GET /books/:id
-  Route(.case(AppRoute.books(id:))) {
+  Route(.case(AppRoute.book(id:))) {
     Path { "books"; Digits() }
   }
 
