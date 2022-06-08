@@ -35,6 +35,7 @@ extension URLRequestData {
       query: components.queryItems?.reduce(into: [:]) { query, item in
         query[item.name, default: []].append(item.value)
       } ?? [:],
+      fragment: components.fragment,
       headers: request.allHTTPHeaderFields?.mapValues {
         $0.split(separator: ",", omittingEmptySubsequences: false).map { String($0) }
       } ?? [:],
@@ -82,6 +83,7 @@ extension URLComponents {
           values.map { URLQueryItem(name: name, value: $0.map(String.init)) }
         }
     }
+    self.fragment = data.fragment
   }
 }
 

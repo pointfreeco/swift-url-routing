@@ -7,6 +7,9 @@ import Foundation
 public struct URLRequestData: Equatable, _EmptyInitializable {
   /// The request body.
   public var body: Data?
+  
+  /// The fragment subcomponent of the request URL.
+  public var fragment: String?
 
   /// The request headers.
   ///
@@ -61,6 +64,7 @@ public struct URLRequestData: Equatable, _EmptyInitializable {
   ///   - port: The port subcomponent of the request URL.
   ///   - path: An array of the request URL's path components.
   ///   - query: The query subcomponent of the request URL.
+  ///   - fragment: The fragment subcomponent of the request URL.
   ///   - headers: The request headers.
   ///   - body: The request body.
   @inlinable
@@ -73,10 +77,12 @@ public struct URLRequestData: Equatable, _EmptyInitializable {
     port: Int? = nil,
     path: String = "",
     query: [String: [String?]] = [:],
+    fragment: String? = nil,
     headers: [String: [String?]] = [:],
     body: Data? = nil
   ) {
     self.body = body
+    self.fragment = fragment
     self.headers = .init(headers.mapValues { $0.map { $0?[...] }[...] }, isNameCaseSensitive: false)
     self.host = host
     self.method = method
@@ -147,6 +153,7 @@ extension URLRequestData: Codable {
       port: try container.decodeIfPresent(Int.self, forKey: .port),
       path: try container.decodeIfPresent(String.self, forKey: .path) ?? "",
       query: try container.decodeIfPresent([String: [String?]].self, forKey: .query) ?? [:],
+      fragment: try container.decodeIfPresent(String.self, forKey: .fragment),
       headers: try container.decodeIfPresent([String: [String?]].self, forKey: .headers) ?? [:],
       body: try container.decodeIfPresent(Data.self, forKey: .body)
     )
@@ -156,6 +163,7 @@ extension URLRequestData: Codable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.body.map(Array.init), forKey: .body)
+    try container.encodeIfPresent(self.fragment, forKey: .fragment)
     if !self.headers.isEmpty {
       try container.encode(
         self.headers.fields.mapValues { $0.map { $0.map(String.init) } },
@@ -180,6 +188,7 @@ extension URLRequestData: Codable {
   @usableFromInline
   enum CodingKeys: CodingKey {
     case body
+    case fragment
     case headers
     case host
     case method
@@ -196,6 +205,7 @@ extension URLRequestData: Hashable {
   @inlinable
   public func hash(into hasher: inout Hasher) {
     hasher.combine(self.body)
+    hasher.combine(self.fragment)
     hasher.combine(self.method)
     hasher.combine(self.headers)
     hasher.combine(self.host)
