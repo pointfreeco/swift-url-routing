@@ -2,17 +2,21 @@ import Parsing
 
 /// Parses a request's fragment subcomponent with a substring parser.
 public struct Fragment<ValueParser: Parser>: Parser where ValueParser.Input == Substring {
-  
+
   @usableFromInline
   let valueParser: ValueParser
-  
+
   /// Initializes a fragment parser that parses the fragment as a string in its entirety.
   @inlinable
   public init()
-  where ValueParser == Parsers.MapConversion<Parsers.ReplaceError<Rest<Substring>>, Conversions.SubstringToString> {
+  where
+    ValueParser == Parsers.MapConversion<
+      Parsers.ReplaceError<Rest<Substring>>, Conversions.SubstringToString
+    >
+  {
     self.valueParser = Rest().replaceError(with: "").map(.string)
   }
-  
+
   /// Initializes a fragment parser.
   ///
   /// - Parameter value: A parser that parses the fragment's substring value into something
@@ -21,7 +25,7 @@ public struct Fragment<ValueParser: Parser>: Parser where ValueParser.Input == S
   public init(@ParserBuilder value: () -> ValueParser) {
     self.valueParser = value()
   }
-  
+
   /// Initializes a fragment parser.
   ///
   /// - Parameter value: A conversion that transforms the fragment's substring value into
@@ -31,7 +35,7 @@ public struct Fragment<ValueParser: Parser>: Parser where ValueParser.Input == S
   where ValueParser == Parsers.MapConversion<Parsers.ReplaceError<Rest<Substring>>, C> {
     self.valueParser = Rest().replaceError(with: "").map(value)
   }
-  
+
   @inlinable
   public func parse(_ input: inout URLRequestData) throws -> ValueParser.Output {
     guard var fragment = input.fragment?[...] else { throw RoutingError() }

@@ -7,7 +7,7 @@ import Foundation
 public struct URLRequestData: Equatable, _EmptyInitializable {
   /// The request body.
   public var body: Data?
-  
+
   /// The fragment subcomponent of the request URL.
   public var fragment: String?
 
