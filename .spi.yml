@@ -9,3 +9,4 @@ builder:
     scheme: URLRouting
   - platform: watchos
     scheme: URLRouting
+  - documentation_targets: [URLRouting]
