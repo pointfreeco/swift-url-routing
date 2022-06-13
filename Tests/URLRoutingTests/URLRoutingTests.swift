@@ -12,6 +12,11 @@ class URLRoutingTests: XCTestCase {
     XCTAssertEqual(try Method.post.print(), URLRequestData(method: "POST"))
   }
 
+  func testHost() {
+    XCTAssertNoThrow(try Host.custom("foo").parse(URLRequestData(host: "foo")))
+    XCTAssertEqual(try Host.custom("foo").print(), URLRequestData(host: "foo"))
+  }
+
   func testScheme() {
     XCTAssertNoThrow(try Scheme.http.parse(URLRequestData(scheme: "http")))
     XCTAssertEqual(try Scheme.http.print(), URLRequestData(scheme: "http"))
