@@ -24,7 +24,7 @@ public struct Scheme: ParserPrinter {
 
   /// Initializes a scheme parser with a scheme name.
   ///
-  /// - Parameter name: A method name.
+  /// - Parameter name: A scheme name.
   @inlinable
   public init(_ name: String) {
     self.name = name
