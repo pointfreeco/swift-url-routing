@@ -103,7 +103,7 @@ Node.ul(
   books.map { book in
     .li(
       .a(
-        .href(appRoute.path(for: .book(id: book.id))),
+        .href(appRouter.path(for: .book(id: book.id))),
         book.title
       )
     )
