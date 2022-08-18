@@ -8,7 +8,7 @@ import Foundation
 
 extension URLRoutingClient {
   @available(iOS 13, macOS 10.15, tvOS 13, watchOS 6, *)
-  @available(*, deprecated, renamed: "responseData(for:as:decoder:)")
+  @available(*, deprecated, renamed: "decodedResponse(for:as:decoder:)")
   public func request<Value: Decodable>(
     _ route: Route,
     as type: Value.Type = Value.self,
