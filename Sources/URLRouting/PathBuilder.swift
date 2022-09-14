@@ -27,8 +27,9 @@ public enum PathBuilder {
   public static func buildPartialBlock<P0: ParserPrinter, P1: ParserPrinter>(
     accumulated p0: P0,
     next p1: Optionally<P1>
-  ) -> AnyParserPrinter<URLRequestData, (P0.Output, P1.Output?)>
+  ) -> AnyParserPrinter<URLRequestData, P1.Output?>
   where
+    P0.Output == Void,
     P0.Input == URLRequestData,
     P1.Input == Substring
   {
@@ -37,23 +38,23 @@ public enum PathBuilder {
         guard input.path.count >= 1
         else { throw RoutingError() }
 
-        let o0 = try p0.parse(&input)
+        try p0.parse(&input)
         if input.path.isEmpty {
-          return (o0, nil)
+          return nil
         } else {
           let o1 = try Parse {
             p1
             End()
           }.parse(input.path[0])
           input.path.removeFirst()
-          return (o0, o1)
+          return o1
         }
       },
       print: { output, input in
-        if let secondComponent = output.1 {
+        if let secondComponent = output {
           input.path.prepend(try p1.print(secondComponent))
         }
-        try p0.print(output.0, into: &input)
+        try p0.print(into: &input)
       }
     )
   }
