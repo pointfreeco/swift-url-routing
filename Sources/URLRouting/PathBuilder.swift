@@ -20,6 +20,45 @@ public enum PathBuilder {
     .init(parser)
   }
 
+  @inlinable
+  public static func buildPartialBlock<P: Parser>(first: P) -> Component<P> {
+    .init(first)
+  }
+  public static func buildPartialBlock<P0: ParserPrinter, P1: ParserPrinter>(
+    accumulated p0: P0,
+    next p1: Optionally<P1>
+  ) -> AnyParserPrinter<URLRequestData, (P0.Output, P1.Output?)>
+  where P0.Input == P1.Input, P0.Input == Substring
+  {
+    .init(
+      parse: { input in
+        guard input.path.count >= 1
+        else { throw RoutingError() }
+
+        let o0 = try Parse {
+          p0
+          End()
+        }.parse(input.path.removeFirst())
+        if input.path.isEmpty {
+          return (o0, nil)
+        } else {
+          let o1 = try Parse {
+            p1
+            End()
+          }.parse(input.path[0])
+          input.path.removeFirst()
+          return (o0, o1)
+        }
+      },
+      print: { output, input in
+        if let secondComponent = output.1 {
+          input.path.prepend(try p1.print(secondComponent))
+        }
+        input.path.prepend(try p0.print(output.0))
+      }
+    )
+  }
+
   public struct Component<ComponentParser: Parser>: Parser
   where ComponentParser.Input == Substring {
     @usableFromInline
