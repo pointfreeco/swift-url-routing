@@ -45,7 +45,7 @@ public enum PathBuilder {
           let o1 = try Parse {
             p1
             End()
-          }.parse(input.path[0])
+          }.parse(input.path[input.path.startIndex])
           input.path.removeFirst()
           return o1
         }
