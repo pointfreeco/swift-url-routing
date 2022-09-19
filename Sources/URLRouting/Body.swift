@@ -26,7 +26,7 @@ public struct Body<Bytes: Parser>: Parser where Bytes.Input == Data {
   /// - Parameter bytesConversion: A conversion that transforms bytes into some other type.
   @inlinable
   public init<C>(_ bytesConversion: C)
-  where Bytes == Parsers.MapConversion<Parsers.ReplaceError<Rest<Bytes.Input>>, C> {
+  where Bytes == Parsers.MapConversion<Parsers.ReplaceError<Rest<Data>>, C> {
     self.bytesParser = Rest().replaceError(with: .init()).map(bytesConversion)
   }
 
