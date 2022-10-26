@@ -78,7 +78,7 @@ extension URLComponents {
     self.path = "/\(data.path.joined(separator: "/"))"
     if !data.query.isEmpty {
       self.queryItems = data.query
-        .sorted(by: { $0.key < $1.key })
+        .sorted(by: URLQueryItem.comparator())
         .flatMap { name, values in
           values.map { URLQueryItem(name: name, value: $0.map(String.init)) }
         }
