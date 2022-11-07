@@ -79,6 +79,11 @@ class URLRoutingTests: XCTestCase {
     XCTAssertEqual("Blob", name)
     XCTAssertEqual(42, age)
     XCTAssertEqual(["debug": ["1"]], request.query)
+    
+    XCTAssertEqual(
+      try p.print(("Blob", 42)),
+      URLRequestData(query: ["name": ["Blob"], "age": ["42"]])
+    )
   }
 
   func testQueryDefault() throws {

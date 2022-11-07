@@ -36,9 +36,12 @@ extension URLRequestData {
         query[item.name, default: []].append(item.value)
       } ?? [:],
       fragment: components.fragment,
-      headers: request.allHTTPHeaderFields?.mapValues {
-        $0.split(separator: ",", omittingEmptySubsequences: false).map { String($0) }
-      } ?? [:],
+      headers: .init(
+        request.allHTTPHeaderFields?.map { key, value in
+          (key, value.split(separator: ",", omittingEmptySubsequences: false).map { String($0) })
+        } ?? [],
+        uniquingKeysWith: { $1 }
+      ),
       body: request.httpBody
     )
   }
@@ -78,7 +81,6 @@ extension URLComponents {
     self.path = "/\(data.path.joined(separator: "/"))"
     if !data.query.isEmpty {
       self.queryItems = data.query
-        .sorted(by: { $0.key < $1.key })
         .flatMap { name, values in
           values.map { URLQueryItem(name: name, value: $0.map(String.init)) }
         }
@@ -103,7 +105,7 @@ extension URLRequest {
     guard let url = URLComponents(data: data).url else { return nil }
     self.init(url: url)
     self.httpMethod = data.method
-    for (name, values) in data.headers.sorted(by: { $0.key < $1.key }) {
+    for (name, values) in data.headers {
       for value in values {
         if let value = value {
           self.addValue(String(value), forHTTPHeaderField: name)
