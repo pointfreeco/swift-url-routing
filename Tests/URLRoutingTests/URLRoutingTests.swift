@@ -79,6 +79,11 @@ class URLRoutingTests: XCTestCase {
     XCTAssertEqual("Blob", name)
     XCTAssertEqual(42, age)
     XCTAssertEqual(["debug": ["1"]], request.query)
+    
+    XCTAssertEqual(
+      try p.print(("Blob", 42)),
+      URLRequestData(query: ["name": ["Blob"], "age": ["42"]])
+    )
   }
 
   func testQueryDefault() throws {
@@ -190,7 +195,7 @@ class URLRoutingTests: XCTestCase {
       try p.parse(&request)
     )
     XCTAssertEqual(
-      URLRequestData(headers: ["cookie": ["isAdmin=true; userId=42"]]),
+      URLRequestData(headers: ["cookie": ["userId=42; isAdmin=true"]]),
       try p.print(Session(userId: 42, isAdmin: true))
     )
   }

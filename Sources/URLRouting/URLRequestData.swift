@@ -1,4 +1,5 @@
 import Foundation
+import OrderedCollections
 
 /// A parseable URL request.
 ///
@@ -76,9 +77,9 @@ public struct URLRequestData: Equatable, _EmptyInitializable {
     host: String? = nil,
     port: Int? = nil,
     path: String = "",
-    query: [String: [String?]] = [:],
+    query: OrderedDictionary<String, [String?]> = [:],
     fragment: String? = nil,
-    headers: [String: [String?]] = [:],
+    headers: OrderedDictionary<String, [String?]> = [:],
     body: Data? = nil
   ) {
     self.body = body
@@ -99,13 +100,13 @@ public struct URLRequestData: Equatable, _EmptyInitializable {
   /// Used by ``URLRequestData`` to model query parameters and headers in a way that can be
   /// efficiently parsed.
   public struct Fields {
-    public var fields: [String: ArraySlice<Substring?>]
+    public var fields: OrderedDictionary<String, ArraySlice<Substring?>>
 
     @usableFromInline var isNameCaseSensitive: Bool
 
     @inlinable
     public init(
-      _ fields: [String: ArraySlice<Substring?>] = [:],
+      _ fields: OrderedDictionary<String, ArraySlice<Substring?>> = [:],
       isNameCaseSensitive: Bool
     ) {
       self.fields = [:]
@@ -152,9 +153,9 @@ extension URLRequestData: Codable {
       host: try container.decodeIfPresent(String.self, forKey: .host),
       port: try container.decodeIfPresent(Int.self, forKey: .port),
       path: try container.decodeIfPresent(String.self, forKey: .path) ?? "",
-      query: try container.decodeIfPresent([String: [String?]].self, forKey: .query) ?? [:],
+      query: try container.decodeIfPresent(OrderedDictionary<String, [String?]>.self, forKey: .query) ?? [:],
       fragment: try container.decodeIfPresent(String.self, forKey: .fragment),
-      headers: try container.decodeIfPresent([String: [String?]].self, forKey: .headers) ?? [:],
+      headers: try container.decodeIfPresent(OrderedDictionary<String, [String?]>.self, forKey: .headers) ?? [:],
       body: try container.decodeIfPresent(Data.self, forKey: .body)
     )
   }
@@ -219,27 +220,27 @@ extension URLRequestData: Hashable {
 }
 
 extension URLRequestData.Fields: Collection {
-  public typealias Element = Dictionary<String, ArraySlice<Substring?>>.Element
-  public typealias Index = Dictionary<String, ArraySlice<Substring?>>.Index
+  public typealias Element = OrderedDictionary<String, ArraySlice<Substring?>>.Element
+  public typealias Index = OrderedDictionary<String, ArraySlice<Substring?>>.Index
 
   @inlinable
   public var startIndex: Index {
-    self.fields.startIndex
+    self.fields.elements.startIndex
   }
 
   @inlinable
   public var endIndex: Index {
-    self.fields.endIndex
+    self.fields.elements.endIndex
   }
 
   @inlinable
   public subscript(position: Index) -> Element {
-    self.fields[position]
+    self.fields.elements[position]
   }
 
   @inlinable
   public func index(after i: Index) -> Index {
-    self.fields.index(after: i)
+    self.fields.elements.index(after: i)
   }
 }
 
@@ -253,11 +254,7 @@ extension URLRequestData.Fields: ExpressibleByDictionaryLiteral {
 extension URLRequestData.Fields: Equatable {
   @inlinable
   public static func == (lhs: Self, rhs: Self) -> Bool {
-    guard lhs.count == rhs.count else { return false }
-    for key in lhs.fields.keys {
-      guard lhs[key] == rhs[key] else { return false }
-    }
-    return true
+    lhs.fields == rhs.fields
   }
 }
 

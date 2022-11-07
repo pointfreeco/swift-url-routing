@@ -38,7 +38,6 @@ extension Cookies: ParserPrinter where Parsers: ParserPrinter {
 
     input.headers["cookie", default: []].prepend(
       cookies
-        .sorted(by: { $0.key < $1.key })
         .flatMap { name, values in values.map { "\(name)=\($0 ?? "")" } }
         .joined(separator: "; ")[...]
     )

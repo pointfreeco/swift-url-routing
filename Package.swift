@@ -15,6 +15,7 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/apple/swift-argument-parser", from: "0.5.0"),
+    .package(url: "https://github.com/apple/swift-collections", from: "1.0.3"),
     .package(url: "https://github.com/pointfreeco/swift-parsing", from: "0.10.0"),
     .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "0.3.0"),
     .package(name: "Benchmark", url: "https://github.com/google/swift-benchmark", from: "0.1.1"),
@@ -23,6 +24,7 @@ let package = Package(
     .target(
       name: "URLRouting",
       dependencies: [
+        .product(name: "OrderedCollections", package: "swift-collections"),
         .product(name: "Parsing", package: "swift-parsing"),
         .product(name: "XCTestDynamicOverlay", package: "xctest-dynamic-overlay"),
       ]
