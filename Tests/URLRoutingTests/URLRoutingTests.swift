@@ -82,7 +82,7 @@ class URLRoutingTests: XCTestCase {
     
     XCTAssertEqual(
       try p.print(("Blob", 42)),
-      URLRequestData(query: ["name": ["Blob"], "age": ["42"]])
+      URLRequestData(query: ["age": ["42"], "name": ["Blob"]])
     )
   }
 

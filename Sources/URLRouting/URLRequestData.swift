@@ -254,11 +254,7 @@ extension URLRequestData.Fields: ExpressibleByDictionaryLiteral {
 extension URLRequestData.Fields: Equatable {
   @inlinable
   public static func == (lhs: Self, rhs: Self) -> Bool {
-    guard lhs.count == rhs.count else { return false }
-    for key in lhs.fields.keys {
-      guard lhs[key] == rhs[key] else { return false }
-    }
-    return true
+    lhs.fields == rhs.fields
   }
 }
 
