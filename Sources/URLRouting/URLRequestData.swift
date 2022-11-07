@@ -153,9 +153,11 @@ extension URLRequestData: Codable {
       host: try container.decodeIfPresent(String.self, forKey: .host),
       port: try container.decodeIfPresent(Int.self, forKey: .port),
       path: try container.decodeIfPresent(String.self, forKey: .path) ?? "",
-      query: try container.decodeIfPresent(OrderedDictionary<String, [String?]>.self, forKey: .query) ?? [:],
+      query: try container.decodeIfPresent(
+        OrderedDictionary<String, [String?]>.self, forKey: .query) ?? [:],
       fragment: try container.decodeIfPresent(String.self, forKey: .fragment),
-      headers: try container.decodeIfPresent(OrderedDictionary<String, [String?]>.self, forKey: .headers) ?? [:],
+      headers: try container.decodeIfPresent(
+        OrderedDictionary<String, [String?]>.self, forKey: .headers) ?? [:],
       body: try container.decodeIfPresent(Data.self, forKey: .body)
     )
   }
