@@ -103,6 +103,11 @@ extension Field: ParserPrinter where Value: ParserPrinter {
   @inlinable
   public func print(_ output: Value.Output, into input: inout URLRequestData.Fields) rethrows {
     if let defaultValue = self.defaultValue, isEqual(output, defaultValue) { return }
-    input[self.name, default: []].prepend(try valueParser.print(output))
+    try input.fields.updateValue(
+      forKey: input.isNameCaseSensitive ? self.name : self.name.lowercased(),
+      insertingDefault: [],
+      at: 0,
+      with: { $0.prepend(try self.valueParser.print(output)) }
+    )
   }
 }

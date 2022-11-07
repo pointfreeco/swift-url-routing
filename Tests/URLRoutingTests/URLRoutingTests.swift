@@ -82,7 +82,7 @@ class URLRoutingTests: XCTestCase {
     
     XCTAssertEqual(
       try p.print(("Blob", 42)),
-      URLRequestData(query: ["age": ["42"], "name": ["Blob"]])
+      URLRequestData(query: ["name": ["Blob"], "age": ["42"]])
     )
   }
 
@@ -195,7 +195,7 @@ class URLRoutingTests: XCTestCase {
       try p.parse(&request)
     )
     XCTAssertEqual(
-      URLRequestData(headers: ["cookie": ["isAdmin=true; userId=42"]]),
+      URLRequestData(headers: ["cookie": ["userId=42; isAdmin=true"]]),
       try p.print(Session(userId: 42, isAdmin: true))
     )
   }
