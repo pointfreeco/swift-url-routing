@@ -1,4 +1,4 @@
-// swift-tools-version: 5.5
+// swift-tools-version: 5.7
 
 import PackageDescription
 
@@ -15,9 +15,9 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/apple/swift-argument-parser", from: "0.5.0"),
-    .package(url: "https://github.com/pointfreeco/swift-parsing", .branch("swift-5-7")),
+    .package(url: "https://github.com/pointfreeco/swift-parsing", branch: "swift-5-7"),
     .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "0.3.0"),
-    .package(name: "Benchmark", url: "https://github.com/google/swift-benchmark", from: "0.1.1"),
+    .package(url: "https://github.com/google/swift-benchmark", from: "0.1.1"),
   ],
   targets: [
     .target(
@@ -37,7 +37,7 @@ let package = Package(
       name: "swift-url-routing-benchmark",
       dependencies: [
         "URLRouting",
-        .product(name: "Benchmark", package: "Benchmark"),
+        .product(name: "Benchmark", package: "swift-benchmark"),
       ]
     ),
     .executableTarget(
