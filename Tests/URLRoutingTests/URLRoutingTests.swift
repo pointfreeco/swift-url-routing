@@ -9,7 +9,7 @@ import XCTest
 class URLRoutingTests: XCTestCase {
   func testMethod() {
 
-    Path {
+    _ = Path {
       "sheet"
       Optionally { Int.parser() }
     }

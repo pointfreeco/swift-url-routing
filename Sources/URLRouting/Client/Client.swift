@@ -92,9 +92,7 @@ extension URLRoutingClient {
         var dataTask: URLSessionDataTask?
         let cancel: () -> Void = { dataTask?.cancel() }
 
-        return try await withTaskCancellationHandler(
-          handler: { cancel() },
-          operation: {
+          return try await withTaskCancellationHandler {
             try await withCheckedThrowingContinuation { continuation in
               dataTask = session.dataTask(with: request) { data, response, error in
                 guard
@@ -109,8 +107,9 @@ extension URLRoutingClient {
               }
               dataTask?.resume()
             }
+          } onCancel: {
+              cancel()
           }
-        )
       },
       decoder: decoder
     )
