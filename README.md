@@ -52,7 +52,7 @@ import URLRouting
 
 let appRouter = OneOf {
   // GET /books
-  Route(.case(AppRoute.books))) {
+  Route(.case(AppRoute.books)) {
     Path { "books" }
   }
 
