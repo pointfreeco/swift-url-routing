@@ -1,3 +1,4 @@
+import OrderedCollections
 import Foundation
 
 /// Parser form-encoded data using field parsers.
@@ -7,7 +8,7 @@ where FieldParsers.Input == URLRequestData.Fields {
   let fieldParsers: FieldParsers
 
   @inlinable
-  public init(@ParserBuilder build: () -> FieldParsers) {
+  public init(@ParserBuilder<URLRequestData.Fields> build: () -> FieldParsers) {
     self.fieldParsers = build()
   }
 

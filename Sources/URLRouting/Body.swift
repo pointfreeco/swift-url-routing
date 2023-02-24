@@ -6,7 +6,7 @@ public struct Body<Bytes: Parser>: Parser where Bytes.Input == Data {
   let bytesParser: Bytes
 
   @inlinable
-  public init(@ParserBuilder _ bytesParser: () -> Bytes) {
+  public init(@ParserBuilder<Data> _ bytesParser: () -> Bytes) {
     self.bytesParser = bytesParser()
   }
 

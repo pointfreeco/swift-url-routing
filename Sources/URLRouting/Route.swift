@@ -9,7 +9,7 @@ public struct Route<Parsers: Parser>: Parser where Parsers.Input == URLRequestDa
   @inlinable
   public init<Upstream, NewOutput>(
     _ transform: @escaping (Upstream.Output) -> NewOutput,
-    @ParserBuilder with build: () -> Upstream
+    @ParserBuilder<URLRequestData> with build: () -> Upstream
   )
   where
     Upstream.Input == URLRequestData,
@@ -22,7 +22,7 @@ public struct Route<Parsers: Parser>: Parser where Parsers.Input == URLRequestDa
   @inlinable
   public init<Upstream, NewOutput>(
     _ output: NewOutput,
-    @ParserBuilder with build: () -> Upstream
+    @ParserBuilder<URLRequestData> with build: () -> Upstream
   )
   where
     Upstream.Input == URLRequestData,
@@ -46,7 +46,7 @@ public struct Route<Parsers: Parser>: Parser where Parsers.Input == URLRequestDa
   @inlinable
   public init<C: Conversion, P: Parser>(
     _ conversion: C,
-    @ParserBuilder with parsers: () -> P
+    @ParserBuilder<URLRequestData> with parsers: () -> P
   )
   where
     P.Input == URLRequestData,

@@ -1,10 +1,13 @@
+import Foundation
+import OrderedCollections
+
 /// Parses a request's cookies using field parsers.
 public struct Cookies<Parsers: Parser>: Parser where Parsers.Input == URLRequestData.Fields {
   @usableFromInline
   let cookieParsers: Parsers
 
   @inlinable
-  public init(@ParserBuilder build: () -> Parsers) {
+  public init(@ParserBuilder<URLRequestData.Fields> build: () -> Parsers) {
     self.cookieParsers = build()
   }
 
