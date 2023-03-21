@@ -68,7 +68,24 @@ public struct Route<Parsers: Parser>: Parser where Parsers.Input == URLRequestDa
   public func parse(_ input: inout URLRequestData) throws -> Parsers.Output {
     let output = try self.parsers.parse(&input)
     if input.method != nil {
-      try Method.get.parse(&input)
+        if input.method == "GET" || input.method == "HEAD" {
+            try Method.get.parse(&input)
+        }
+        else if input.method == "POST" {
+            try Method.post.parse(&input)
+        }
+        else if input.method == "PUT" {
+            try Method.put.parse(&input)
+        }
+        else if input.method == "PATCH" {
+            try Method.patch.parse(&input)
+        }
+        else if input.method == "DELETE" {
+            try Method.delete.parse(&input)
+        }
+        else {
+            throw RoutingError()
+        }
     }
     try PathEnd().parse(input)
     return output
