@@ -54,3 +54,7 @@ extension Body: ParserPrinter where Bytes: ParserPrinter {
     input.body = try self.bytesParser.print(output)
   }
 }
+
+extension Parser where Input == URLRequestData {
+  public typealias Body = URLRouting.Body
+}

@@ -81,7 +81,7 @@ class RoutingErrorTests: XCTestCase {
         OneOf {
           Route(.case(UsersRoute.create)) {
             Method.post
-            URLRouting.Body(.json(CreateUser.self))  // TODO: Better disambiguation
+            Body(.json(CreateUser.self))
           }
 
           Route(.case(UsersRoute.user(id:route:))) {
