@@ -1,5 +1,5 @@
-import OrderedCollections
 import Foundation
+import OrderedCollections
 
 /// Parser form-encoded data using field parsers.
 public struct FormData<FieldParsers: Parser>: Parser
