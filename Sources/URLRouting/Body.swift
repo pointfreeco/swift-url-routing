@@ -6,7 +6,7 @@ public struct Body<Bytes: Parser>: Parser where Bytes.Input == Data {
   let bytesParser: Bytes
 
   @inlinable
-  public init(@ParserBuilder _ bytesParser: () -> Bytes) {
+  public init(@ParserBuilder<Data> _ bytesParser: () -> Bytes) {
     self.bytesParser = bytesParser()
   }
 
@@ -53,4 +53,8 @@ extension Body: ParserPrinter where Bytes: ParserPrinter {
   public func print(_ output: Bytes.Output, into input: inout URLRequestData) rethrows {
     input.body = try self.bytesParser.print(output)
   }
+}
+
+extension Parser where Input == URLRequestData {
+  public typealias Body = URLRouting.Body
 }

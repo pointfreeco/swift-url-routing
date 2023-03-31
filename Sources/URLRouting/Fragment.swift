@@ -22,7 +22,7 @@ public struct Fragment<ValueParser: Parser>: Parser where ValueParser.Input == S
   /// - Parameter value: A parser that parses the fragment's substring value into something
   ///   more well-structured.
   @inlinable
-  public init(@ParserBuilder value: () -> ValueParser) {
+  public init(@ParserBuilder<Substring> value: () -> ValueParser) {
     self.valueParser = value()
   }
 

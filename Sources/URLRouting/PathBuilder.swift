@@ -20,6 +20,22 @@ public enum PathBuilder {
     .init(parser)
   }
 
+  @inlinable
+  public static func buildExpression<P: Parser>(_ parser: P) -> P where P.Input == Substring {
+    parser
+  }
+
+  @inlinable
+  @_disfavoredOverload
+  public static func buildExpression<P: Parser>(
+    _ parser: P
+  ) -> From<Conversions.SubstringToUTF8View, Substring.UTF8View, P>
+  where P.Input == Substring.UTF8View {
+    From(.utf8) {
+      parser
+    }
+  }
+
   public struct Component<ComponentParser: Parser>: Parser
   where ComponentParser.Input == Substring {
     @usableFromInline

@@ -19,7 +19,7 @@ where FieldParsers.Input == URLRequestData.Fields {
   let fieldParsers: FieldParsers
 
   @inlinable
-  public init(@ParserBuilder build: () -> FieldParsers) {
+  public init(@ParserBuilder<URLRequestData.Fields> build: () -> FieldParsers) {
     self.fieldParsers = build()
   }
 

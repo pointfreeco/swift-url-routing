@@ -1,3 +1,5 @@
+import OrderedCollections
+
 /// Parses a named field's value with a string parser.
 ///
 /// Useful for incrementally parsing values from various request fields, including ``Query``
@@ -38,7 +40,7 @@ public struct Field<Value: Parser>: Parser where Value.Input == Substring {
   public init(
     _ name: String,
     default defaultValue: Value.Output? = nil,
-    @ParserBuilder _ value: () -> Value
+    @ParserBuilder<Substring> _ value: () -> Value
   ) {
     self.defaultValue = defaultValue
     self.name = name
