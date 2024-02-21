@@ -84,6 +84,7 @@ extension URLComponents {
         .flatMap { name, values in
           values.map { URLQueryItem(name: name, value: $0.map(String.init)) }
         }
+        self.percentEncodedQuery = self.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%2B")
     }
     self.fragment = data.fragment
   }
