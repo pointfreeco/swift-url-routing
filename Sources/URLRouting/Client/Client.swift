@@ -1,6 +1,6 @@
 import Foundation
+import IssueReporting
 import Parsing
-import XCTestDynamicOverlay
 
 #if canImport(FoundationNetworking)
   import FoundationNetworking
@@ -130,7 +130,7 @@ extension URLRoutingClient {
 
         Use '\(Self.self).override' to supply a default response for this route.
         """
-      XCTFail(message)
+      reportIssue(message)
       throw UnimplementedEndpoint(message: message)
     }
   }

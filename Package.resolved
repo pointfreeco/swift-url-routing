@@ -55,6 +55,15 @@
       }
     },
     {
+      "identity" : "swift-issue-reporting",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-issue-reporting",
+      "state" : {
+        "revision" : "926f43898706eaa127db79ac42138e1ad7e85a3f",
+        "version" : "1.2.0"
+      }
+    },
+    {
       "identity" : "swift-parsing",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-parsing",
