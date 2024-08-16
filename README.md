@@ -125,6 +125,7 @@ For [Vapor][vapor] bindings to URL Routing, see the [Vapor Routing][vapor-routin
 The documentation for releases and main are available here:
 
 * [main](https://swiftpackageindex.com/pointfreeco/swift-url-routing/main/documentation/urlrouting)
+* [latest release](http://swiftpackageindex.com/pointfreeco/swift-url-routing/documentation)
 * [0.6.0](https://swiftpackageindex.com/pointfreeco/swift-url-routing/0.6.0/documentation/urlrouting)
 * [0.5.0](https://swiftpackageindex.com/pointfreeco/swift-url-routing/0.5.0/documentation/urlrouting)
 * [0.4.0](https://swiftpackageindex.com/pointfreeco/swift-url-routing/0.4.0/documentation/urlrouting)
