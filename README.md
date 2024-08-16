@@ -124,18 +124,18 @@ For [Vapor][vapor] bindings to URL Routing, see the [Vapor Routing][vapor-routin
 
 The documentation for releases and main are available here:
 
-* [main][swift-url-routing-docs]
-* [0.5.0](https://pointfreeco.github.io/swift-url-routing/0.5.0/documentation/urlrouting)
-* [0.4.0](https://pointfreeco.github.io/swift-url-routing/0.4.0/documentation/urlrouting)
-* [0.3.0](https://pointfreeco.github.io/swift-url-routing/0.3.0/documentation/urlrouting)
-* [0.2.0](https://pointfreeco.github.io/swift-url-routing/0.2.0/documentation/urlrouting)
-* [0.1.0](https://pointfreeco.github.io/swift-url-routing/0.1.0/documentation/urlrouting)
+* [main](https://swiftpackageindex.com/pointfreeco/swift-url-routing/main/documentation/urlrouting)
+* [0.6.0](https://swiftpackageindex.com/pointfreeco/swift-url-routing/0.6.0/documentation/urlrouting)
+* [0.5.0](https://swiftpackageindex.com/pointfreeco/swift-url-routing/0.5.0/documentation/urlrouting)
+* [0.4.0](https://swiftpackageindex.com/pointfreeco/swift-url-routing/0.4.0/documentation/urlrouting)
+* [0.3.0](https://swiftpackageindex.com/pointfreeco/swift-url-routing/0.3.0/documentation/urlrouting)
+* [0.2.0](https://swiftpackageindex.com/pointfreeco/swift-url-routing/0.2.0/documentation/urlrouting)
+* [0.1.0](https://swiftpackageindex.com/pointfreeco/swift-url-routing/0.1.0/documentation/urlrouting)
 
 ## License
 
 This library is released under the MIT license. See [LICENSE](LICENSE) for details.
 
-[swift-url-routing-docs]: https://pointfreeco.github.io/swift-url-routing
 [swift-parsing]: http://github.com/pointfreeco/swift-parsing
 [vapor-routing]: http://github.com/pointfreeco/vapor-routing
 [vapor]: http://vapor.codes
