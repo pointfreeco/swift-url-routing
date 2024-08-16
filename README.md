@@ -124,7 +124,6 @@ For [Vapor][vapor] bindings to URL Routing, see the [Vapor Routing][vapor-routin
 
 The documentation for releases and main are available [here](https://swiftpackageindex.com/pointfreeco/swift-url-routing/main/documentation/urlrouting).
 
-
 ## License
 
 This library is released under the MIT license. See [LICENSE](LICENSE) for details.
