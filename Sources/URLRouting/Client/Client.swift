@@ -16,13 +16,16 @@ import XCTestDynamicOverlay
 /// responses.
 public struct URLRoutingClient<Route> {
   var request: (Route) async throws -> (Data, URLResponse)
+  var dataTask: (Route) throws -> URLSessionDataTask
   let decoder: JSONDecoder
 
   public init(
     request: @escaping (Route) async throws -> (Data, URLResponse),
+    dataTask: @escaping (Route) throws -> URLSessionDataTask,
     decoder: JSONDecoder = .init()
   ) {
     self.request = request
+    self.dataTask = dataTask
     self.decoder = decoder
   }
 
@@ -54,6 +57,15 @@ public struct URLRoutingClient<Route> {
     } catch {
       throw URLRoutingDecodingError(bytes: data, response: response, underlyingError: error)
     }
+  }
+
+  /// Produces a URLSessionDataTask for a route.
+  ///
+  /// - Parameter route: The route to request.
+  /// - Returns: URLSessionDataTask.
+  @available(iOS 13, macOS 10.15, tvOS 13, watchOS 6, *)
+  public func dataTask(for route: Route) throws -> URLSessionDataTask {
+      try self.dataTask(route)
   }
 }
 
@@ -112,6 +124,10 @@ extension URLRoutingClient {
           onCancel: { cancel() }
         )
       },
+      dataTask: { route in
+          let request = try router.request(for: route)
+          return session.dataTask(with: request)
+      },
       decoder: decoder
     )
   }
@@ -124,15 +140,26 @@ extension URLRoutingClient {
   /// routes in the API client. You can creating a failing API client, and then
   /// ``override(_:with:)-1ot4o`` certain routes that return mocked data.
   public static var failing: Self {
-    Self {
-      let message = """
-        Failed to respond to route: \(debugPrint($0))
+      Self(
+        request: {
+          let message = """
+            Failed to respond to route: \(debugPrint($0))
 
-        Use '\(Self.self).override' to supply a default response for this route.
-        """
-      XCTFail(message)
-      throw UnimplementedEndpoint(message: message)
-    }
+            Use '\(Self.self).override' to supply a default response for this route.
+            """
+          XCTFail(message)
+          throw UnimplementedEndpoint(message: message)
+        },
+        dataTask: {
+          let message = """
+            Failed to respond to route: \(debugPrint($0))
+
+            Use '\(Self.self).override' to supply a default response for this route.
+            """
+          XCTFail(message)
+          throw UnimplementedEndpoint(message: message)
+        }
+      )
   }
 
   /// Constructs a new ``URLRoutingClient`` that returns a certain response for a specified route,
