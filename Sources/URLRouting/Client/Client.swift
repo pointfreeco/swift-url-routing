@@ -1,6 +1,6 @@
 import Foundation
+import IssueReporting
 import Parsing
-import XCTestDynamicOverlay
 
 #if canImport(FoundationNetworking)
   import FoundationNetworking
