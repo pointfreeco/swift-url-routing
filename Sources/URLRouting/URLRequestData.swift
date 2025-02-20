@@ -5,7 +5,7 @@ import OrderedCollections
 ///
 /// Models a URL request in manner that can be incrementally parsed in an efficient way, by storing
 /// its various fields as subsequences for parsers to consume.
-public struct URLRequestData: Equatable, _EmptyInitializable {
+public struct URLRequestData: Sendable, Equatable, _EmptyInitializable {
   /// The request body.
   public var body: Data?
 
@@ -99,7 +99,7 @@ public struct URLRequestData: Equatable, _EmptyInitializable {
   ///
   /// Used by ``URLRequestData`` to model query parameters and headers in a way that can be
   /// efficiently parsed.
-  public struct Fields {
+  public struct Fields: Sendable {
     public var fields: OrderedDictionary<String, ArraySlice<Substring?>>
 
     @usableFromInline var isNameCaseSensitive: Bool
