@@ -1,4 +1,4 @@
-# swift-url-routing
+# URL Routing
 
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fpointfreeco%2Fswift-url-routing%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/pointfreeco/swift-url-routing)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fpointfreeco%2Fswift-url-routing%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/pointfreeco/swift-url-routing)
@@ -99,16 +99,16 @@ appRouter.path(for: .searchBooks(query: "Blob Bio"))
 ```
 
 ```swift
-Node.ul(
-  books.map { book in
-    .li(
-      .a(
-        .href(appRouter.path(for: .book(id: book.id))),
+ul {
+  for book in books {
+    li {
+      a {
         book.title
-      )
-    )
+      }
+      .href(appRouter.path(for: .book(id: book.id)))
+    }
   }
-)
+}
 ```
 ```html
 <ul>
