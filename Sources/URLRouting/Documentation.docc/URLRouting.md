@@ -4,8 +4,8 @@ A bidirectional URL router with more type safety and less fuss. This library is 
 
 ## Additional Resources
 
-- [GitHub Repo](https://github.com/pointfreeco/swift-parsing)
-- [Discussions](https://github.com/pointfreeco/swift-parsing/discussions)
+- [GitHub Repo](https://github.com/pointfreeco/swift-url-routing)
+- [Discussions](https://github.com/pointfreeco/swift-url-routing/discussions)
 - [Point-Free Videos](https://www.pointfree.co/collections/parsing)
 
 ## Overview
