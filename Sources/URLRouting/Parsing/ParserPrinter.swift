@@ -1,5 +1,5 @@
-import Foundation
-import IssueReporting
+public import Foundation
+public import IssueReporting
 
 #if canImport(FoundationNetworking)
   import FoundationNetworking

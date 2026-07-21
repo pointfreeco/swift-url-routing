@@ -1,4 +1,4 @@
-import OrderedCollections
+public import OrderedCollections
 
 /// Parses a named field's value with a string parser.
 ///

@@ -56,5 +56,9 @@ for target in package.targets {
   target.swiftSettings?.append(contentsOf: [
     .enableUpcomingFeature("ExistentialAny"),
     .enableUpcomingFeature("InferSendableFromCaptures"),
+    .enableUpcomingFeature("ImmutableWeakCaptures"),
+    .enableUpcomingFeature("InferIsolatedConformances"),
+    .enableUpcomingFeature("InternalImportsByDefault"),
+    .enableUpcomingFeature("MemberImportVisibility"),
   ])
 }

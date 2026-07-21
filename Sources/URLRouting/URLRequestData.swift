@@ -1,5 +1,5 @@
-import Foundation
-import OrderedCollections
+public import Foundation
+public import OrderedCollections
 
 /// A parseable URL request.
 ///

@@ -1,5 +1,6 @@
 import Benchmark
 import Foundation
+import OrderedCollections
 import URLRouting
 
 #if canImport(FoundationNetworking)
