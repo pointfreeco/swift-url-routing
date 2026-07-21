@@ -60,7 +60,7 @@ public struct URLRoutingClient<Route> {
 public struct URLRoutingDecodingError: Error {
   public let bytes: Data
   public let response: URLResponse
-  public let underlyingError: Error
+  public let underlyingError: any Error
 }
 
 extension URLRoutingClient {
@@ -280,15 +280,15 @@ private func debugPrint(_ value: Any) -> String {
       return debugTupleHelp(mirror.children)
     case (_, .struct):
       return "\(debugTypeHelp(mirror.subjectType))(\(debugTupleHelp(mirror.children)))"
-    case let (value as CustomDebugStringConvertible, _):
+    case let (value as any CustomDebugStringConvertible, _):
       return value.debugDescription
-    case let (value as CustomStringConvertible, _):
+    case let (value as any CustomStringConvertible, _):
       return value.description
     default:
       return "_"
     }
   }
 
-  return (value as? CustomDebugStringConvertible)?.debugDescription
+  return (value as? any CustomDebugStringConvertible)?.debugDescription
     ?? "\(debugTypeHelp(type(of: value)))\(debugHelp(value))"
 }
