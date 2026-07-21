@@ -1,4 +1,5 @@
 import Foundation
+import IssueReporting
 
 #if canImport(FoundationNetworking)
   import FoundationNetworking
@@ -40,20 +41,22 @@ extension ParserPrinter where Input == URLRequestData {
     do {
       return try URLComponents(data: self.print(route)).url ?? URL(string: "#route-not-found")!
     } catch {
-      breakpoint(
+      withIssueReporters([.breakpoint]) {
+        reportIssue(
         """
         ---
         Could not generate a URL for route:
-
+        
           \(route)
-
+        
         The router has not been configured to parse this output and so it cannot print it back \
         into a URL. A '#route-not-found' fragment has been printed instead.
-
+        
         \(error)
         ---
         """
-      )
+        )
+      }
       return URL(string: "#route-not-found")!
     }
   }
@@ -72,20 +75,22 @@ extension ParserPrinter where Input == URLRequestData {
       }
       return components.string ?? "#route-not-found"
     } catch {
-      breakpoint(
+      withIssueReporters([.breakpoint]) {
+        reportIssue(
         """
         ---
         Could not generate a URL for route:
-
+        
           \(route)
-
+        
         The router has not been configured to parse this output and so it cannot print it back \
         into a URL. A '#route-not-found' fragment has been printed instead.
-
+        
         \(error)
         ---
         """
-      )
+        )
+      }
       return "#route-not-found"
     }
   }
