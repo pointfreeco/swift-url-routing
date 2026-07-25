@@ -5,7 +5,6 @@ benchmarks:
 
 test:
 	swift test \
-		--enable-test-discovery \
 		--parallel
 
 test-linux:
@@ -13,8 +12,8 @@ test-linux:
 		--rm \
 		-v "$(PWD):$(PWD)" \
 		-w "$(PWD)" \
-		swift:5.7 \
-		bash -c 'make test'
+		swift:6.3 \
+		bash -c 'swift test --parallel'
 
 format:
 	swift format --in-place --recursive \
@@ -24,4 +23,4 @@ format:
 generate-variadics:
 	swift run variadics-generator > Sources/URLRouting/Builders/Variadics.swift
 
-.PHONY: benchmarks format generate-variadics test
+.PHONY: benchmarks format generate-variadics test test-linux
