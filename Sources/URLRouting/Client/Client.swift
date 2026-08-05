@@ -74,12 +74,11 @@ extension URLRoutingClient {
   ///   - session: A URL session.
   /// - Returns: A live API client that makes requests through a URL session.
   @available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, *)
-  public static func live<R: ParserPrinter>(
-    router: R,
+  public static func live(
+    router: some Router<Route>,
     session: URLSession = .shared,
     decoder: JSONDecoder = .init()
-  ) -> Self
-  where R.Input == URLRequestData, R.Output == Route {
+  ) -> Self {
     Self.init(
       request: { route in
         let request = try router.request(for: route)
