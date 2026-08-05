@@ -193,7 +193,7 @@ extension URLRoutingClient {
   }
 }
 
-extension Result where Success == (data: Data, response: URLResponse), Failure == URLError {
+extension Result<(data: Data, response: URLResponse), URLError> {
   /// Constructs a `Result` that represents a HTTP status 200 response.
   ///
   /// This method is most useful when used in conjunction with
@@ -211,8 +211,8 @@ extension Result where Success == (data: Data, response: URLResponse), Failure =
   ///   - headerFields: Optional header fields to add to the response.
   ///   - encoder: The `JSONEncoder` to use to encode the value.
   /// - Returns: A result.
-  public static func ok<T: Encodable>(
-    _ value: T,
+  public static func ok(
+    _ value: some Encodable,
     headerFields: [String: String]? = nil,
     encoder: JSONEncoder = .init()
   ) throws -> Self {
