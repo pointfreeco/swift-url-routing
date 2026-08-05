@@ -3,7 +3,7 @@ import IssueReporting
 import Parsing
 
 #if canImport(FoundationNetworking)
-  import FoundationNetworking
+  public import FoundationNetworking
 #endif
 
 /// A type that can make requests to a server, download the response, and decode the response into a

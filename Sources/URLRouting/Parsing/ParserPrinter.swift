@@ -2,7 +2,7 @@ public import Foundation
 public import IssueReporting
 
 #if canImport(FoundationNetworking)
-  import FoundationNetworking
+  public import FoundationNetworking
 #endif
 
 extension Parser where Input == URLRequestData {
