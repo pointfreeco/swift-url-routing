@@ -1,4 +1,5 @@
 public import Foundation
+public import IssueReporting
 
 #if canImport(FoundationNetworking)
   public import FoundationNetworking
@@ -40,7 +41,7 @@ extension ParserPrinter where Input == URLRequestData {
     do {
       return try URLComponents(data: self.print(route)).url ?? URL(string: "#route-not-found")!
     } catch {
-      breakpoint(
+      reportIssue(
         """
         ---
         Could not generate a URL for route:
@@ -72,7 +73,7 @@ extension ParserPrinter where Input == URLRequestData {
       }
       return components.string ?? "#route-not-found"
     } catch {
-      breakpoint(
+      reportIssue(
         """
         ---
         Could not generate a URL for route:
