@@ -43,16 +43,12 @@ extension ParserPrinter where Input == URLRequestData {
     } catch {
       reportIssue(
         """
-        ---
-        Could not generate a URL for route:
-
-          \(route)
+        No URL for route: \(route)
 
         The router has not been configured to parse this output and so it cannot print it back \
         into a URL. A '#route-not-found' fragment has been printed instead.
 
         \(error)
-        ---
         """
       )
       return URL(string: "#route-not-found")!
@@ -75,16 +71,12 @@ extension ParserPrinter where Input == URLRequestData {
     } catch {
       reportIssue(
         """
-        ---
-        Could not generate a URL for route:
-
-          \(route)
+        No URL for route: \(route)
 
         The router has not been configured to parse this output and so it cannot print it back \
         into a URL. A '#route-not-found' fragment has been printed instead.
 
         \(error)
-        ---
         """
       )
       return "#route-not-found"
