@@ -279,9 +279,9 @@ private func debugPrint(_ value: Any) -> String {
       return debugTupleHelp(mirror.children)
     case (_, .struct):
       return "\(debugTypeHelp(mirror.subjectType))(\(debugTupleHelp(mirror.children)))"
-    case let (value as any CustomDebugStringConvertible, _):
+    case (let value as any CustomDebugStringConvertible, _):
       return value.debugDescription
-    case let (value as any CustomStringConvertible, _):
+    case (let value as any CustomStringConvertible, _):
       return value.description
     default:
       return "_"
