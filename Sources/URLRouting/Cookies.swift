@@ -1,5 +1,5 @@
-import Foundation
-import OrderedCollections
+public import Foundation
+public import OrderedCollections
 
 /// Parses a request's cookies using field parsers.
 public struct Cookies<Parsers: Parser>: Parser where Parsers.Input == URLRequestData.Fields {

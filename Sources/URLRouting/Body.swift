@@ -1,4 +1,4 @@
-import Foundation
+public import Foundation
 
 /// Parses a request's body using a byte parser.
 public struct Body<Bytes: Parser>: Parser where Bytes.Input == Data {

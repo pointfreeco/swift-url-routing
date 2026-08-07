@@ -1,5 +1,5 @@
 import Foundation
-import OrderedCollections
+public import OrderedCollections
 import Parsing
 
 extension ParserPrinter where Input == URLRequestData {

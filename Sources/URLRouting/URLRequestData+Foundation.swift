@@ -1,7 +1,8 @@
-import Foundation
+public import Foundation
+import OrderedCollections
 
 #if canImport(FoundationNetworking)
-  import FoundationNetworking
+  public import FoundationNetworking
 #endif
 
 extension URLRequestData {

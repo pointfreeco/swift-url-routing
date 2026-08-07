@@ -1,4 +1,4 @@
-import OrderedCollections
+public import OrderedCollections
 
 /// Parses a named field's value with a string parser.
 ///
@@ -104,7 +104,7 @@ public struct Field<Value: Parser>: Parser where Value.Input == Substring {
 extension Field: ParserPrinter where Value: ParserPrinter {
   @inlinable
   public func print(_ output: Value.Output, into input: inout URLRequestData.Fields) rethrows {
-    if let defaultValue = self.defaultValue, isEqual(output, defaultValue) { return }
+    if let defaultValue, _isEqual(output, defaultValue) == true { return }
     try input.fields.updateValue(
       forKey: input.isNameCaseSensitive ? self.name : self.name.lowercased(),
       insertingDefault: [],
