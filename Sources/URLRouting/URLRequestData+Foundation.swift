@@ -33,8 +33,8 @@ extension URLRequestData {
       host: components.host,
       port: components.port,
       path: components.path,
-      query: components.queryItems?.reduce(into: [:]) { query, item in
-        query[item.name, default: []].append(item.value)
+      query: components.percentEncodedQueryItems?.reduce(into: [:]) { query, item in
+        query[item.name.urlFormDecoded, default: []].append(item.value?.urlFormDecoded)
       } ?? [:],
       fragment: components.fragment,
       headers: .init(
@@ -81,13 +81,38 @@ extension URLComponents {
     self.port = data.port
     self.path = "/\(data.path.joined(separator: "/"))"
     if !data.query.isEmpty {
-      self.queryItems = data.query
-        .flatMap { name, values in
-          values.map { URLQueryItem(name: name, value: $0.map(String.init)) }
-        }
+      self.percentEncodedQueryItems = data.query.urlFormEncodedQueryItems
     }
     self.fragment = data.fragment
   }
+}
+
+extension URLRequestData.Fields {
+  @usableFromInline
+  var urlFormEncodedQueryItems: [URLQueryItem] {
+    self.flatMap { name, values in
+      values.map { URLQueryItem(name: name.urlFormEncoded, value: $0.map(\.urlFormEncoded)) }
+    }
+  }
+}
+
+extension StringProtocol {
+  @usableFromInline
+  var urlFormDecoded: String {
+    let spaced = self.replacingOccurrences(of: "+", with: " ")
+    return spaced.removingPercentEncoding ?? spaced
+  }
+
+  @usableFromInline
+  var urlFormEncoded: String {
+    self.addingPercentEncoding(withAllowedCharacters: .urlQueryItemAllowed) ?? String(self)
+  }
+}
+
+extension CharacterSet {
+  @usableFromInline
+  static let urlQueryItemAllowed = CharacterSet.urlQueryAllowed
+    .subtracting(CharacterSet(charactersIn: "+&="))
 }
 
 extension URLRequest {

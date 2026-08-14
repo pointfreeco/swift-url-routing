@@ -87,6 +87,24 @@ class URLRoutingTests: XCTestCase {
     )
   }
 
+  func testQueryFormEncoding() throws {
+    let p = Query {
+      Field("q")
+    }
+
+    var request = URLRequestData(string: "/search?q=get+set+binding")!
+    XCTAssertEqual("get set binding", try p.parse(&request))
+
+    request = URLRequestData(string: "/search?q=%22%240%20%2B%201%22")!
+    XCTAssertEqual(#""$0 + 1""#, try p.parse(&request))
+
+    XCTAssertEqual("/?q=%22$0%20%2B%201%22", p.path(for: #""$0 + 1""#))
+    XCTAssertEqual(
+      "/?q=%22$0%20%2B%201%22",
+      URLComponents(data: try p.print(#""$0 + 1""#)).string
+    )
+  }
+
   func testQueryDefault() throws {
     let p = Query {
       Field("page", default: 1) {
