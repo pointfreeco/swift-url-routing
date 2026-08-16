@@ -149,7 +149,7 @@ struct URLRoutingTests {
     request = try #require(URLRequestData(string: "#section1"))
     #expect(throws: Never.self) { try p3.parse(&request) }
     request = try #require(URLRequestData(string: "#section2"))
-    try #require(throws: (any Error).self) { try p3.parse(&request) }
+    #expect(throws: (any Error).self) { try p3.parse(&request) }
     #expect(try p3.print() == URLRequestData(fragment: "section1"))
 
     enum AppRoute: Equatable {
