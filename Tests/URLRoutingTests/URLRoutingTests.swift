@@ -39,19 +39,18 @@ struct URLRoutingTests {
   @Test
   func path() throws {
     #expect(try Path { Int.parser() }.parse(URLRequestData(path: "/123")) == 123)
-    
+
     let error = try #require(throws: (any Error).self) {
       try Path { Int.parser() }.parse(URLRequestData(path: "/123-foo"))
     }
-    
+
     #expect(
-        """
-        error: unexpected input
-         --> input:1:5
-        1 | /123-foo
-          |     ^ expected end of input
-        """ ==
-        String(describing: error)
+      """
+      error: unexpected input
+       --> input:1:5
+      1 | /123-foo
+        |     ^ expected end of input
+      """ == String(describing: error)
     )
   }
 
@@ -168,8 +167,8 @@ struct URLRoutingTests {
     request = try #require(URLRequestData(string: "/legal/privacy#faq"))
     #expect(try r.parse(&request) == AppRoute.privacyPolicy(section: "faq"))
     #expect(
-      try r.print(.privacyPolicy(section: "faq")) ==
-      URLRequestData(path: "/legal/privacy", fragment: "faq")
+      try r.print(.privacyPolicy(section: "faq"))
+        == URLRequestData(path: "/legal/privacy", fragment: "faq")
     )
   }
 
@@ -189,8 +188,8 @@ struct URLRoutingTests {
     var request = URLRequestData(headers: ["cookie": ["userId=42; isAdmin=true"]])
     #expect(try p.parse(&request) == Session(userId: 42, isAdmin: true))
     #expect(
-      try p.print(Session(userId: 42, isAdmin: true)) ==
-      URLRequestData(headers: ["cookie": ["userId=42; isAdmin=true"]])
+      try p.print(Session(userId: 42, isAdmin: true))
+        == URLRequestData(headers: ["cookie": ["userId=42; isAdmin=true"]])
     )
   }
 
@@ -207,8 +206,8 @@ struct URLRoutingTests {
     var request = URLRequestData(headers: ["cookie": [#"pf_session={"userId":42}; foo=bar"#]])
     #expect(try p.parse(&request) == Session(userId: 42))
     #expect(
-      try p.print(Session(userId: 42)) ==
-      URLRequestData(headers: ["cookie": [#"pf_session={"userId":42}"#]])
+      try p.print(Session(userId: 42))
+        == URLRequestData(headers: ["cookie": [#"pf_session={"userId":42}"#]])
     )
   }
 
@@ -224,23 +223,23 @@ struct URLRoutingTests {
     }
 
     #expect(
-      "https://api.pointfree.co/v1/episodes?token=deadbeef" ==
-      URLRequest(
-        data:
-          try router
-          .baseURL("https://api.pointfree.co/v1?token=deadbeef")
-          .print(.episodes)
-      )?.url?.absoluteString
+      "https://api.pointfree.co/v1/episodes?token=deadbeef"
+        == URLRequest(
+          data:
+            try router
+            .baseURL("https://api.pointfree.co/v1?token=deadbeef")
+            .print(.episodes)
+        )?.url?.absoluteString
     )
 
     #expect(
-      "http://localhost:8080/v1/episodes?token=deadbeef" ==
-      URLRequest(
-        data:
-          try router
-          .baseURL("http://localhost:8080/v1?token=deadbeef")
-          .print(.episodes)
-      )?.url?.absoluteString
+      "http://localhost:8080/v1/episodes?token=deadbeef"
+        == URLRequest(
+          data:
+            try router
+            .baseURL("http://localhost:8080/v1?token=deadbeef")
+            .print(.episodes)
+        )?.url?.absoluteString
     )
   }
 }

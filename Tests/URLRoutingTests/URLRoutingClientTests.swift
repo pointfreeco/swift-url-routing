@@ -57,7 +57,8 @@ struct URLRoutingClientTests {
         request: { _ in
           (Data(#"{"decodableValue":"result"}"#.utf8), URLResponse())
         }, decoder: customDecoder)
-      let response = try await sut.decodedResponse(for: .test, as: Response.self, decoder: JSONDecoder())
+      let response = try await sut.decodedResponse(
+        for: .test, as: Response.self, decoder: JSONDecoder())
       #expect(response.value == Response(decodableValue: "result"))
     }
   #endif

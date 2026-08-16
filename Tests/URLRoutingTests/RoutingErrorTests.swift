@@ -119,11 +119,11 @@ struct RoutingErrorTests {
         }
       }
     }
-    
+
     let error = try #require(throws: (any Error).self) {
       try SiteRouter().parse(URLRequestData(path: "/123"))
     }
-    
+
     #expect(
       """
       error: unexpected input
@@ -133,8 +133,7 @@ struct RoutingErrorTests {
         |  ^ expected "contact-us"
         |  ^ expected end of input
         |  ^ expected "users"
-      """ ==
-      String(describing: error)
+      """ == String(describing: error)
     )
   }
 }
