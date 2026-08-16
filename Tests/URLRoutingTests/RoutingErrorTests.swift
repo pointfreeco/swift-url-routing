@@ -1,9 +1,12 @@
+import Foundation
 import Parsing
+import Testing
 import URLRouting
 import XCTest
 
-class RoutingErrorTests: XCTestCase {
-  func testError() {
+struct RoutingErrorTests {
+  @Test
+  func error() throws {
     enum BookRoute {
       case fetch
     }
@@ -116,20 +119,22 @@ class RoutingErrorTests: XCTestCase {
         }
       }
     }
-
-    XCTAssertThrowsError(try SiteRouter().parse(URLRequestData(path: "/123"))) { error in
-      XCTAssertEqual(
-        """
-        error: unexpected input
-         --> input:1:2
-        1 | /123
-          |  ^ expected "about-us"
-          |  ^ expected "contact-us"
-          |  ^ expected end of input
-          |  ^ expected "users"
-        """,
-        "\(error)"
-      )
+    
+    let error = try #require(throws: (any Error).self) {
+      try SiteRouter().parse(URLRequestData(path: "/123"))
     }
+    
+    #expect(
+      """
+      error: unexpected input
+       --> input:1:2
+      1 | /123
+        |  ^ expected "about-us"
+        |  ^ expected "contact-us"
+        |  ^ expected end of input
+        |  ^ expected "users"
+      """ ==
+      String(describing: error)
+    )
   }
 }
