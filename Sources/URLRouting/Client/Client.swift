@@ -1,9 +1,9 @@
-import Foundation
+public import Foundation
 import IssueReporting
 import Parsing
 
 #if canImport(FoundationNetworking)
-  import FoundationNetworking
+  public import FoundationNetworking
 #endif
 
 /// A type that can make requests to a server, download the response, and decode the response into a
@@ -60,7 +60,7 @@ public struct URLRoutingClient<Route> {
 public struct URLRoutingDecodingError: Error {
   public let bytes: Data
   public let response: URLResponse
-  public let underlyingError: Error
+  public let underlyingError: any Error
 }
 
 extension URLRoutingClient {
@@ -74,12 +74,11 @@ extension URLRoutingClient {
   ///   - session: A URL session.
   /// - Returns: A live API client that makes requests through a URL session.
   @available(macOS 10.15, iOS 13, watchOS 6, tvOS 13, *)
-  public static func live<R: ParserPrinter>(
-    router: R,
+  public static func live(
+    router: some Router<Route>,
     session: URLSession = .shared,
     decoder: JSONDecoder = .init()
-  ) -> Self
-  where R.Input == URLRequestData, R.Output == Route {
+  ) -> Self {
     Self.init(
       request: { route in
         let request = try router.request(for: route)
@@ -194,7 +193,7 @@ extension URLRoutingClient {
   }
 }
 
-extension Result where Success == (data: Data, response: URLResponse), Failure == URLError {
+extension Result<(data: Data, response: URLResponse), URLError> {
   /// Constructs a `Result` that represents a HTTP status 200 response.
   ///
   /// This method is most useful when used in conjunction with
@@ -212,8 +211,8 @@ extension Result where Success == (data: Data, response: URLResponse), Failure =
   ///   - headerFields: Optional header fields to add to the response.
   ///   - encoder: The `JSONEncoder` to use to encode the value.
   /// - Returns: A result.
-  public static func ok<T: Encodable>(
-    _ value: T,
+  public static func ok(
+    _ value: some Encodable,
     headerFields: [String: String]? = nil,
     encoder: JSONEncoder = .init()
   ) throws -> Self {
@@ -280,15 +279,15 @@ private func debugPrint(_ value: Any) -> String {
       return debugTupleHelp(mirror.children)
     case (_, .struct):
       return "\(debugTypeHelp(mirror.subjectType))(\(debugTupleHelp(mirror.children)))"
-    case let (value as CustomDebugStringConvertible, _):
+    case (let value as any CustomDebugStringConvertible, _):
       return value.debugDescription
-    case let (value as CustomStringConvertible, _):
+    case (let value as any CustomStringConvertible, _):
       return value.description
     default:
       return "_"
     }
   }
 
-  return (value as? CustomDebugStringConvertible)?.debugDescription
+  return (value as? any CustomDebugStringConvertible)?.debugDescription
     ?? "\(debugTypeHelp(type(of: value)))\(debugHelp(value))"
 }
