@@ -109,10 +109,10 @@ struct URLRoutingTests {
     }
 
     var request = URLRequestData(string: "/search?q=get+set+binding")!
-    #expect("get set binding" == try p.parse(&request))
+    try #expect("get set binding" == p.parse(&request))
 
     request = URLRequestData(string: "/search?q=%22%240%20%2B%201%22")!
-    #expect(#""$0 + 1""# == try p.parse(&request))
+    try #expect(#""$0 + 1""# == p.parse(&request))
 
     #expect("/?q=%22$0%20%2B%201%22" == p.path(for: #""$0 + 1""#))
     #expect(
