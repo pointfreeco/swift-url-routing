@@ -1,14 +1,14 @@
-// swift-tools-version: 6.4
+// swift-tools-version: 6.1
 
 import PackageDescription
 
 let package = Package(
   name: "swift-url-routing",
   platforms: [
-    .iOS(.v15),
-    .macOS(.v12),
-    .tvOS(.v15),
-    .watchOS(.v9),
+    .iOS(.v13),
+    .macOS(.v10_15),
+    .tvOS(.v13),
+    .watchOS(.v6),
   ],
   products: [
     .library(name: "URLRouting", targets: ["URLRouting"])
@@ -17,15 +17,15 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-argument-parser", from: "0.5.0"),
     .package(url: "https://github.com/apple/swift-collections", from: "1.0.3"),
     .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
-    .package(url: "https://github.com/pointfreeco/swift-issue-reporting", from: "2.1.0"),
     .package(url: "https://github.com/pointfreeco/swift-parsing", from: "0.15.0"),
+    .package(url: "https://github.com/pointfreeco/xctest-dynamic-overlay", from: "1.13.0"),
     .package(url: "https://github.com/google/swift-benchmark", from: "0.1.1"),
   ],
   targets: [
     .target(
       name: "URLRouting",
       dependencies: [
-        .product(name: "IssueReporting", package: "swift-issue-reporting"),
+        .product(name: "IssueReporting", package: "xctest-dynamic-overlay"),
         .product(name: "OrderedCollections", package: "swift-collections"),
         .product(name: "Parsing", package: "swift-parsing"),
       ]
