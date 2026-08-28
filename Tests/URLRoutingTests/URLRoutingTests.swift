@@ -103,6 +103,25 @@ struct URLRoutingTests {
   }
 
   @Test
+  func queryFormEncoding() throws {
+    let p = Query {
+      Field("q")
+    }
+
+    var request = URLRequestData(string: "/search?q=get+set+binding")!
+    try #expect("get set binding" == p.parse(&request))
+
+    request = URLRequestData(string: "/search?q=%22%240%20%2B%201%22")!
+    try #expect(#""$0 + 1""# == p.parse(&request))
+
+    #expect("/?q=%22$0%20%2B%201%22" == p.path(for: #""$0 + 1""#))
+    #expect(
+      "/?q=%22$0%20%2B%201%22"
+        == URLComponents(data: try p.print(#""$0 + 1""#)).string
+    )
+  }
+
+  @Test
   func queryDefault() throws {
     let p = Query {
       Field("page", default: 1) {

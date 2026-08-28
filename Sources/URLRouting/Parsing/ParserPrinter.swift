@@ -62,10 +62,7 @@ extension ParserPrinter where Input == URLRequestData {
       var components = URLComponents()
       components.path = "/\(data.path.joined(separator: "/"))"
       if !data.query.isEmpty {
-        components.queryItems = data.query
-          .flatMap { name, values in
-            values.map { URLQueryItem(name: name, value: $0.map(String.init)) }
-          }
+        components.percentEncodedQueryItems = data.query.urlFormEncodedQueryItems
       }
       return components.string ?? "#route-not-found"
     } catch {
