@@ -121,8 +121,6 @@ struct URLRoutingTests {
     )
   }
 
-  func testQueryDefault() throws {
-
   @Test
   func queryDefault() throws {
     let p = Query {
