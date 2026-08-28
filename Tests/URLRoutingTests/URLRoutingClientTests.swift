@@ -1,15 +1,17 @@
+import Foundation
 import Parsing
+import Testing
 import URLRouting
-import XCTest
 
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
 
-class URLRoutingClientTests: XCTestCase {
+struct URLRoutingClientTests {
   #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+    @Test
     @available(iOS 13, macOS 10.15, tvOS 13, watchOS 6, *)
-    func testJSONDecoder_noDecoder() async throws {
+    func jsonDecoder_noDecoder() async throws {
       struct Response: Equatable, Decodable {
         let decodableValue: String
       }
@@ -17,13 +19,14 @@ class URLRoutingClientTests: XCTestCase {
         case test
       }
       let sut = URLRoutingClient<AppRoute>(request: { _ in
-        ("{\"decodableValue\":\"result\"}".data(using: .utf8)!, URLResponse())
+        (Data(#"{"decodableValue":"result"}"#.utf8), URLResponse())
       })
       let response = try await sut.decodedResponse(for: .test, as: Response.self)
-      XCTAssertEqual(response.value, .init(decodableValue: "result"))
+      #expect(response.value == Response(decodableValue: "result"))
     }
+    @Test
     @available(iOS 13, macOS 10.15, tvOS 13, watchOS 6, *)
-    func testJSONDecoder_customDecoder() async throws {
+    func jsonDecoder_customDecoder() async throws {
       struct Response: Equatable, Decodable {
         let decodableValue: String
       }
@@ -34,13 +37,14 @@ class URLRoutingClientTests: XCTestCase {
       customDecoder.keyDecodingStrategy = .convertFromSnakeCase
       let sut = URLRoutingClient<AppRoute>(
         request: { _ in
-          ("{\"decodable_value\":\"result\"}".data(using: .utf8)!, URLResponse())
+          (Data(#"{"decodable_value":"result"}"#.utf8), URLResponse())
         }, decoder: customDecoder)
       let response = try await sut.decodedResponse(for: .test, as: Response.self)
-      XCTAssertEqual(response.value, .init(decodableValue: "result"))
+      #expect(response.value == Response(decodableValue: "result"))
     }
+    @Test
     @available(iOS 13, macOS 10.15, tvOS 13, watchOS 6, *)
-    func testJSONDecoder_customDecoderForRequest() async throws {
+    func jsonDecoder_customDecoderForRequest() async throws {
       struct Response: Equatable, Decodable {
         let decodableValue: String
       }
@@ -51,10 +55,11 @@ class URLRoutingClientTests: XCTestCase {
       customDecoder.keyDecodingStrategy = .convertFromSnakeCase
       let sut = URLRoutingClient<AppRoute>(
         request: { _ in
-          ("{\"decodableValue\":\"result\"}".data(using: .utf8)!, URLResponse())
+          (Data(#"{"decodableValue":"result"}"#.utf8), URLResponse())
         }, decoder: customDecoder)
-      let response = try await sut.decodedResponse(for: .test, as: Response.self, decoder: .init())
-      XCTAssertEqual(response.value, .init(decodableValue: "result"))
+      let response = try await sut.decodedResponse(
+        for: .test, as: Response.self, decoder: JSONDecoder())
+      #expect(response.value == Response(decodableValue: "result"))
     }
   #endif
 }
